@@ -1,0 +1,183 @@
+<!-- INCLUDE overall_header.html -->
+<link rel="stylesheet" href="../includes/mapbbcode/leaflet.css" />
+<!--[if lte IE 8]>
+    <link rel="stylesheet" href="../includes/mapbbcode/leaflet.ie.css" />
+<![endif]-->
+<script src="../includes/mapbbcode/leaflet.js"></script>
+<script src="../includes/mapbbcode/Bing.js"></script>
+<script src="../includes/mapbbcode/mapbbcode-config.js"></script>
+
+<a name="maincontent"></a>
+
+<h1>{L_MAPBB_CONFIG}</h1>
+
+<p>{L_MAPBB_CONFIG_EXPLAIN}</p>
+
+<!-- IF S_WARNING -->
+	<div class="errorbox">
+		<h3>{L_WARNING}</h3>
+		<p>{WARNING_MSG}</p>
+	</div>
+<!-- ENDIF -->
+
+<form id="acp_mapbbcode" method="post" action="{U_ACTION}">
+<input type="hidden" name="default_zoom" value="{DEFAULT_ZOOM}" />
+<input type="hidden" name="default_pos" value="{DEFAULT_POS}" />
+<input type="hidden" name="view_width" value="{VIEW_WIDTH}" />
+<input type="hidden" name="view_height" value="{VIEW_HEIGHT}" />
+<input type="hidden" name="full_height" value="{FULL_HEIGHT}" />
+<input type="hidden" name="editor_height" value="{EDITOR_HEIGHT}" />
+<input type="hidden" name="window_width" value="{WINDOW_WIDTH}" />
+<input type="hidden" name="window_height" value="{WINDOW_HEIGHT}" />
+<input type="hidden" name="always_full" value="{ALWAYS_FULL}" />
+<input type="hidden" name="editor_window" value="{EDITOR_WINDOW}" />
+<input type="hidden" name="layers" value="{LAYERS}" />
+
+<fieldset>
+	<legend>{L_MAPBB_GLOBAL}</legend>
+    <dl>
+        <dt><label for="maps_enable">{L_MAPS_ENABLE}:</label></dt>
+        <dd><label><input type="radio" class="radio" id="maps_enable" name="maps_enable" value="1"<!-- IF MAPS_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+            <label><input type="radio" class="radio" name="maps_enable" value="0"<!-- IF not MAPS_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+    </dl>
+</fieldset>
+<div id="panel_config"></div>
+
+<fieldset>
+	<dl>
+		<dt>{L_MAPBB_LAYERS}</dt>
+        <dd><select id="layer_select" size="1"></select> <input type="button" id="addbutton"/></dd>
+	</dl>
+	<dl style="display: none;" id="bing_key_row">
+		<dt id="bing_key_title"></dt>
+		<dd><input class="post" type="text" id="bing_key"/></dd>
+	</dl>
+    <dl>
+        <dt>{L_MAPBB_DEFAULT_ZOOM_POS}</dt>
+        <dd id="default_zoom_pos"></dd>
+    </dl>
+    <dl>
+        <dt>{L_MAPBB_PANEL_SIZE}</dt>
+        <dd id="panel_size"></dd>
+    </dl>
+    <dl>
+        <dt>{L_MAPBB_FULL_HEIGHT}</dt>
+        <dd id="full_height"></dd>
+    </dl>
+    <dl>
+        <dt>{L_MAPBB_WINDOW_SIZE}</dt>
+        <dd id="window_size"></dd>
+    </dl>
+    <dl>
+        <dt>{L_MAPBB_EDITOR_HEIGHT}</dt>
+        <dd id="editor_height"></dd>
+    </dl>
+</fieldset>
+
+<fieldset>
+    <legend>{L_MAPBB_OTHER}</legend>
+    <dl>
+        <dt><label for="standard_switcher">{L_MAPBB_STANDARD_SWITCHER}:</label></dt>
+        <dd><label><input type="radio" class="radio" id="standard_switcher" name="standard_switcher" value="1"<!-- IF STANDARD_SWITCHER --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+            <label><input type="radio" class="radio" name="standard_switcher" value="0"<!-- IF not STANDARD_SWITCHER --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+    </dl>
+    <dl>
+        <dt><label for="outer_link">{L_MAPBB_OUTER_LINK}:</label><br /><span>{L_MAPBB_OUTER_LINK_EXAMPLE}</span></dt>
+        <dd><input type="text" id="outer_link" name="outer_link" maxlength="120" size="40" value="{OUTER_LINK}" /></dd>
+    </dl>
+    <dl>
+        <dt><label for="allowed_tags">{L_MAPBB_ALLOWED_TAGS}:</label></dt>
+        <dd><input type="text" id="allowed_tags" name="allowed_tags" maxlength="80" size="40" value="{ALLOWED_TAGS}" /></dd>
+    </dl>
+</fieldset>
+
+<fieldset class="submit-buttons">
+	<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+	<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	{S_FORM_TOKEN}
+</fieldset>
+</form>
+
+<script language="javascript" type="text/javascript">
+<!--
+// All scripts in this file are licensed WTFPL.
+
+function isTrue(val) {
+    return val && val !== '0' && val !== 'false';
+}
+
+function updateTableValues() {
+	var f = document.getElementById('acp_mapbbcode'),
+	    full = isTrue(f.elements['always_full'].value),
+	    win = isTrue(f.elements['editor_window'].value);
+	document.getElementById('default_zoom_pos').innerHTML = f.elements['default_zoom'].value + ',' + f.elements['default_pos'].value;
+	document.getElementById('panel_size').innerHTML = (full ? '<s>' : '') + f.elements['view_width'].value + 'x' + f.elements['view_height'].value + (full ? '</s>' : '');
+	document.getElementById('full_height').innerHTML = f.elements['full_height'].value;
+	document.getElementById('window_size').innerHTML = (win ? '' : '<s>') + f.elements['window_width'].value + 'x' + f.elements['window_height'].value + (win ? '' : '</s>');
+	document.getElementById('editor_height').innerHTML = (win ? '<s>' : '') + f.elements['editor_height'].value + (win ? '</s>' : '');
+}
+
+var config = new MapBBCodeConfig({
+	layers: '{LAYERS}'.split(','),
+	defaultZoom: {DEFAULT_ZOOM}+0,
+	defaultPosition: [{DEFAULT_POS}],
+	viewWidth: {VIEW_WIDTH}+0,
+	viewHeight: {VIEW_HEIGHT}+0,
+	fullViewHeight: {FULL_HEIGHT}+0,
+	editorHeight: {EDITOR_HEIGHT}+0,
+	windowWidth: {WINDOW_WIDTH}+0,
+	windowHeight: {WINDOW_HEIGHT}+0,
+	fullFromStart: isTrue('{ALWAYS_FULL}'),
+//        editorTypeFixed: true, // uncomment if needed
+	editorInWindow: isTrue('{EDITOR_WINDOW}') // set to true or false is needed
+});
+config.setStrings({
+	view: '{L_MAPBB_VIEW}',
+	editor: '{L_MAPBB_EDITOR}',
+	editInWindow: '{L_MAPBB_EDITINWINDOW}',
+	editInPanel: '{L_MAPBB_EDITINPANEL}',
+	viewNormal: '{L_MAPBB_VIEWNORMAL}',
+	viewFull: '{L_MAPBB_VIEWFULL}',
+	viewTitle: '{L_MAPBB_VIEWTITLE}',
+	editorTitle: '{L_MAPBB_EDITORTITLE}',
+	editInWindowTitle: '{L_MAPBB_EDITINWINDOWTITLE}',
+	editInPanelTitle: '{L_MAPBB_EDITINPANELTITLE}',
+	viewNormalTitle: '{L_MAPBB_VIEWNORMALTITLE}',
+	viewFullTitle: '{L_MAPBB_VIEWFULLTITLE}',
+	growTitle: '{L_MAPBB_GROWTITLE}',
+	shrinkTitle: '{L_MAPBB_SHRINKTITLE}',
+	zoomInTitle: '{L_MAPBB_ZOOMINTITLE}',
+	zoomOutTitle: '{L_MAPBB_ZOOMOUTTITLE}',
+    selectLayer: '{L_MAPBB_SELECT_LAYER}',
+    addLayer: '{L_MAPBB_ADD_LAYER}',
+    keyNeeded: '{L_MAPBB_BING_KEY}',
+    keyNeededAlert: '{L_MAPBB_KEY_NEEDED}'
+});
+config.on('show change', function(options) {
+	var f = document.getElementById('acp_mapbbcode');
+	f.elements['default_zoom'].value = options.defaultZoom;
+	f.elements['default_pos'].value = '' + options.defaultPosition[0] + ',' + options.defaultPosition[1];
+	f.elements['view_width'].value = options.viewWidth;
+	f.elements['view_height'].value = options.viewHeight;
+	f.elements['full_height'].value = options.fullViewHeight;
+	f.elements['editor_height'].value = options.editorHeight;
+	f.elements['window_width'].value = options.windowWidth;
+	f.elements['window_height'].value = options.windowHeight;
+	f.elements['layers'].value = options.layers.join(',');
+	f.elements['always_full'].value = options.fullFromStart ? '1' : '';
+	f.elements['editor_window'].value = options.editorInWindow ? '1' : '';
+	updateTableValues();
+});
+config.bindLayerAdder({
+    select: 'layer_select',
+    button: 'addbutton',
+    keyBlock: 'bing_key_row',
+    keyBlockDisplay: 'block',
+    keyTitle: 'bing_key_title',
+    keyValue: 'bing_key'
+});
+config.show('panel_config');
+// -->
+</script>
+
+<!-- INCLUDE overall_footer.html -->

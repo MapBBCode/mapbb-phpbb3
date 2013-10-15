@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
+	<header>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[MapBBCode]]></title>
+		<github><![CDATA[https://github.com/Zverik/mapbb-phpbb3]]></github>
+		<author-group>
+			<author>
+				<realname><![CDATA[Ilya Zverev]]></realname>
+				<username><![CDATA[Zverik]]></username>
+				<email><![CDATA[zverik@textual.ru]]></email>
+			</author>
+		</author-group>
+		<mod-version>0.9.0</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>600</time>
+			<target-version>3.0.12</target-version>
+		</installation>
+		<link-group>
+			<link type="language" href="contrib/ru.xml" lang="en">Russian translation</link>
+			<link type="template" href="contrib/subsilver2.xml" lang="en">Modifications for subsilver2 theme</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/adm/style/acp_mapbbcode.html" to="adm/style/acp_mapbbcode.html"/>
+			<file from="root/includes/acp/acp_mapbbcode.php" to="includes/acp/acp_mapbbcode.php"/>
+			<file from="root/includes/acp/info/acp_mapbbcode.php" to="includes/acp/info/acp_mapbbcode.php"/>
+			<file from="root/includes/hooks/hook_mapbbcode.php" to="includes/hooks/hook_mapbbcode.php"/>
+			<file from="root/language/en/mods/info_acp_mapbbcode.php" to="language/en/mods/info_acp_mapbbcode.php"/>
+			<file from="root/language/en/mods/mapbbcode.php" to="language/en/mods/mapbbcode.php"/>
+			<file from="root/includes/mapbbcode/*.*" to="includes/mapbbcode/*.*"/>
+			<file from="root/install_mapbbcode.php" to="install_mapbbcode.php"/>
+			<file from="root/umil/*.*" to="umil/*.*"/>
+		</copy>
+		<open src="posting.php">
+			<edit>
+				<find><![CDATA[$url_status		= ($config['allow_post_links']) ? true : false;]]></find>
+				<action type="after-add"><![CDATA[$map_status		= ($config['allow_maps']) ? true : false;
+$user->add_lang('mods/mapbbcode');
+if ($map_status)
+{
+	define('MAPBBCODE', 1);
+}]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[	'URL_STATUS'			=> ($bbcode_status && $url_status) ? $user->lang['URL_IS_ON'] : $user->lang['URL_IS_OFF'],]]></find>
+				<action type="after-add"><![CDATA[	'MAP_STATUS'			=> ($bbcode_status && $map_status) ? $user->lang['MAPS_ARE_ON'] : $user->lang['MAPS_ARE_OFF'],]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[	'S_LINKS_ALLOWED'			=> $url_status,]]></find>
+				<action type="after-add"><![CDATA[	'S_MAPS_ALLOWED'			=> $map_status,]]></action>
+			</edit>
+		</open>
+		<open src="includes/bbcode.php">
+			<edit>
+				<find><![CDATA[		$str = array('search' => array(), 'replace' => array());]]></find>
+				<action type="before-add"><![CDATA[		// Check for map bbcode to insert required header
+		if (preg_match('/\[map[^]]*(?:=[0-9.,-]+)?\].*?\[\/map[^\]]*\]/', $message))
+		{
+			define('MAPBBCODE', 1);
+		}]]></action>
+			</edit>
+		</open>
+		<open src="includes/message_parser.php">
+			<edit>
+				<find><![CDATA[			foreach ($disallow as $bool)]]></find>
+				<action type="before-add"><![CDATA[			if( $mode === 'sig' )
+			{
+				$disallow[] = 'map';
+			}]]></action>
+			</edit>
+		</open>
+		<open src="includes/ucp/ucp_pm_compose.php">
+			<edit>
+				<find><![CDATA[	$url_status		= ($config['allow_post_links']) ? true : false;]]></find>
+				<action type="after-add"><![CDATA[	$map_status		= ($config['allow_maps']) ? true : false;
+	$user->add_lang('mods/mapbbcode');
+	if ($map_status)
+	{
+		define('MAPBBCODE', 1);
+	}]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		'URL_STATUS'			=> ($url_status) ? $user->lang['URL_IS_ON'] : $user->lang['URL_IS_OFF'],]]></find>
+				<action type="after-add"><![CDATA[		'MAP_STATUS'			=> ($bbcode_status && $map_status) ? $user->lang['MAPS_ARE_ON'] : $user->lang['MAPS_ARE_OFF'],]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		'S_LINKS_ALLOWED'		=> $url_status,]]></find>
+				<action type="after-add"><![CDATA[		'S_MAPS_ALLOWED'			=> $map_status,]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/overall_header.html">
+			<edit>
+				<find><![CDATA[</head>]]></find>
+				<action type="before-add"><![CDATA[<!-- IF S_MAPBBCODE -->
+<link rel="stylesheet" href="includes/mapbbcode/leaflet.css" />
+<link rel="stylesheet" href="includes/mapbbcode/leaflet.draw.css" />
+<!--[if lte IE 8]>
+	<link rel="stylesheet" href="includes/mapbbcode/leaflet.ie.css" />
+	<link rel="stylesheet" href="includes/mapbbcode/leaflet.draw.ie.css" />
+<![endif]-->
+<script src="includes/mapbbcode/leaflet.js"></script>
+<script src="includes/mapbbcode/leaflet.draw.js"></script>
+<script src="includes/mapbbcode/Bing.js"></script>
+<script src="includes/mapbbcode/mapbbcode.js"></script>
+<script src="includes/mapbbcode/mapbbcode-config.js"></script>
+<script language="Javascript" type="text/javascript">
+<!--
+var mapBBcode = new MapBBCode({
+	libPath: 'includes/mapbbcode/',
+	layers: '{LAYERS}'.split(','),
+	defaultZoom: {DEFAULT_ZOOM}+0,
+	defaultPosition: [{DEFAULT_POS}],
+	viewWidth: {VIEW_WIDTH}+0,
+	viewHeight: {VIEW_HEIGHT}+0,
+	fullViewHeight: {FULL_HEIGHT}+0,
+	editorHeight: {EDITOR_HEIGHT}+0,
+	windowWidth: {WINDOW_WIDTH}+0,
+	windowHeight: {WINDOW_HEIGHT}+0,
+	fullFromStart: {ALWAYS_FULL},
+	preferStandardLayerSwitcher: {STANDARD_SWITCHER},
+	hideInsideClasses: []
+});
+mapBBcode.setStrings({
+	close: '{LA_MAPBB_CLOSE}',
+	remove: '{LA_MAPBB_REMOVE}',
+	apply: '{LA_MAPBB_APPLY}',
+	cancel: '{LA_MAPBB_CANCEL}',
+	title: '{LA_MAPBB_TITLE}',
+	zoomInTitle: '{LA_MAPBB_ZOOMINTITLE}',
+	zoomOutTitle: '{LA_MAPBB_ZOOMOUTTITLE}',
+	applyTitle: '{LA_MAPBB_APPLYTITLE}',
+	cancelTitle: '{LA_MAPBB_CANCELTITLE}',
+	fullScreenTitle: '{LA_MAPBB_FULLSCREENTITLE}',
+	helpTitle: '{LA_MAPBB_HELPTITLE}',
+	outerTitle: '{LA_MAPBB_OUTERTITLE}',
+	polylineTitle: '{LA_MAPBB_POLYLINETITLE}',
+	polygonTitle: '{LA_MAPBB_POLYGONTITLE}',
+	markerTitle: '{LA_MAPBB_MARKERTITLE}',
+	drawCancelTitle: '{LA_MAPBB_DRAWCANCELTITLE}',
+	markerTooltip: '{LA_MAPBB_MARKERTOOLTIP}',
+	polylineStartTooltip: '{LA_MAPBB_POLYLINESTARTTOOLTIP}',
+	polylineContinueTooltip: '{LA_MAPBB_POLYLINECONTINUETOOLTIP}',
+	polylineEndTooltip: '{LA_MAPBB_POLYLINEENDTOOLTIP}',
+	polygonStartTooltip: '{LA_MAPBB_POLYGONSTARTTOOLTIP}',
+	polygonContinueTooltip: '{LA_MAPBB_POLYGONCONTINUETOOLTIP}',
+	polygonEndTooltip: '{LA_MAPBB_POLYGONENDTOOLTIP}',
+	helpContents: '{LA_MAPBB_HELPCONTENTS}'.split('@')
+});
+//-->
+</script>
+<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/posting_buttons.html">
+			<edit>
+				<find><![CDATA[	<!-- IF S_BBCODE_FLASH -->]]></find>
+				<action type="before-add"><![CDATA[	<!-- IF S_MAPS_ALLOWED -->
+        <input type="button" class="button2" accesskey="m" name="addbbcodemap" value="Map" style="text-decoration: underline; width: 40px" onclick="javascript:{EDITOR_WINDOW} ? mapBBcode.editorWindow(document.forms[form_name].elements[text_name]) : mapBBcode.editor('mapedit', document.forms[form_name].elements[text_name]);" title="{L_BBCODE_MAP_HELP}" />
+	<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/posting_editor.html">
+			<edit>
+				<find><![CDATA[	<!-- INCLUDE posting_buttons.html -->]]></find>
+				<action type="before-add"><![CDATA[        <div id="mapedit"></div>]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[			{URL_STATUS}<br />]]></find>
+				<action type="after-add"><![CDATA[			{MAP_STATUS}<br />]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/simple_header.html">
+			<edit>
+				<find><![CDATA[</head>]]></find>
+				<action type="before-add"><![CDATA[<!-- IF S_MAPBBCODE -->
+<link rel="stylesheet" href="includes/mapbbcode/leaflet.css" />
+<!--[if lte IE 8]>
+	<link rel="stylesheet" href="includes/mapbbcode/leaflet.ie.css" />
+<![endif]-->
+<script src="includes/mapbbcode/leaflet.js"></script>
+<script src="includes/mapbbcode/Bing.js"></script>
+<script src="includes/mapbbcode/mapbbcode.js"></script>
+<script src="includes/mapbbcode/mapbbcode-config.js"></script>
+<script language="Javascript" type="text/javascript">
+<!--
+var mapBBcode = new MapBBCode({
+	libPath: 'includes/mapbbcode/',
+	layers: '{LAYERS}'.split(','),
+	defaultZoom: {DEFAULT_ZOOM}+0,
+	defaultPosition: [{DEFAULT_POS}],
+	viewWidth: {VIEW_WIDTH}+0,
+	viewHeight: {VIEW_HEIGHT}+0,
+	fullViewHeight: {FULL_HEIGHT}+0,
+	editorHeight: {EDITOR_HEIGHT}+0,
+	windowWidth: {WINDOW_WIDTH}+0,
+	windowHeight: {WINDOW_HEIGHT}+0,
+	fullFromStart: {ALWAYS_FULL},
+	preferStandardLayerSwitcher: {STANDARD_SWITCHER},
+	hideInsideClasses: []
+});
+mapBBcode.setStrings({
+	zoomInTitle: '{LA_MAPBB_ZOOMINTITLE}',
+	zoomOutTitle: '{LA_MAPBB_ZOOMOUTTITLE}',
+	fullScreenTitle: '{LA_MAPBB_FULLSCREENTITLE}',
+	outerTitle: '{LA_MAPBB_OUTERTITLE}'
+});
+//-->
+</script>
+<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<php-installer><![CDATA[install_mapbbcode.php]]></php-installer>
+		<diy-instructions lang="en"><![CDATA[Once all the files have been modified and uploaded to your site, point your browser to the "install_modbbcode.php" script
+(or click the highlighted link above if you are using AutoMOD) and follow the instructions. Once that is complete,
+you can delete the "install_mapbbcode.php" script.
+
+You can configure MapBBCode settings in the ACP under the "POSTING" tab.]]></diy-instructions>
+	</action-group>
+</mod>

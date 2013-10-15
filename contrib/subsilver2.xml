@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
+	<header>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[MapBBCode for SubSilver2]]></title>
+		<github><![CDATA[https://github.com/Zverik/mapbb-phpbb3]]></github>
+		<author-group>
+			<author>
+				<realname><![CDATA[Ilya Zverev]]></realname>
+				<username><![CDATA[Zverik]]></username>
+				<email><![CDATA[zverik@textual.ru]]></email>
+			</author>
+		</author-group>
+		<mod-version>0.9.0</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>180</time>
+			<target-version>3.0.12</target-version>
+		</installation>
+		<link-group>
+                    <link type="parent" href="../install.xml" lang="en">Main MapBBCode MODX</link>
+		</link-group>
+	</header>
+	<action-group>
+		<open src="styles/subsilver2/template/posting_body.html">
+			<edit>
+				<find><![CDATA[		</script>
+
+		<table width="100%" cellspacing="0" cellpadding="0" border="0">]]></find>
+				<action type="after-add"><![CDATA[                <div id="mapedit"></div>]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[			<td class="gensmall">{URL_STATUS}</td>]]></find>
+				<action type="after-add"><![CDATA[		</tr>
+		<tr>
+			<td class="gensmall">{MAP_STATUS}</td>]]></action>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/posting_buttons.html">
+			<edit>
+				<find><![CDATA[			d: '{LA_BBCODE_D_HELP}',]]></find>
+				<action type="after-add"><![CDATA[			map: '{LA_BBCODE_MAP_HELP}',]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		<!-- IF S_BBCODE_FLASH -->]]></find>
+				<action type="before-add"><![CDATA[
+		<!-- IF S_MAPS_ALLOWED -->
+			<input type="button" class="btnbbcode" accesskey="m" name="addbbcodemap" value="Map" style="text-decoration: underline; width: 40px" onclick="javascript:{EDITOR_WINDOW} ? mapBBcode.editorWindow(document.forms[form_name].elements[text_name]) : mapBBcode.editor('mapedit', document.forms[form_name].elements[text_name]);" onmouseover="helpline('map')" onmouseout="helpline('tip') "/>
+		<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/overall_header.html">
+			<edit>
+				<find><![CDATA[</head>]]></find>
+				<action type="before-add"><![CDATA[
+<!-- IF S_MAPBBCODE -->
+<link rel="stylesheet" href="includes/mapbbcode/leaflet.css" />
+<link rel="stylesheet" href="includes/mapbbcode/leaflet.draw.css" />
+<!--[if lte IE 8]>
+	<link rel="stylesheet" href="includes/mapbbcode/leaflet.ie.css" />
+	<link rel="stylesheet" href="includes/mapbbcode/leaflet.draw.ie.css" />
+<![endif]-->
+<script src="includes/mapbbcode/leaflet.js"></script>
+<script src="includes/mapbbcode/leaflet.draw.js"></script>
+<script src="includes/mapbbcode/Bing.js"></script>
+<script src="includes/mapbbcode/mapbbcode.js"></script>
+<script src="includes/mapbbcode/mapbbcode-config.js"></script>
+<script language="Javascript" type="text/javascript">
+<!--
+var mapBBcode = new MapBBCode({
+	libPath: 'includes/mapbbcode/',
+	layers: '{LAYERS}'.split(','),
+	defaultZoom: {DEFAULT_ZOOM}+0,
+	defaultPosition: [{DEFAULT_POS}],
+	viewWidth: {VIEW_WIDTH}+0,
+	viewHeight: {VIEW_HEIGHT}+0,
+	fullViewHeight: {FULL_HEIGHT}+0,
+	editorHeight: {EDITOR_HEIGHT}+0,
+	windowWidth: {WINDOW_WIDTH}+0,
+	windowHeight: {WINDOW_HEIGHT}+0,
+	fullFromStart: {ALWAYS_FULL},
+	preferStandardLayerSwitcher: {STANDARD_SWITCHER},
+	hideInsideClasses: []
+});
+mapBBcode.setStrings({
+	close: '{LA_MAPBB_CLOSE}',
+	remove: '{LA_MAPBB_REMOVE}',
+	apply: '{LA_MAPBB_APPLY}',
+	cancel: '{LA_MAPBB_CANCEL}',
+	title: '{LA_MAPBB_TITLE}',
+	zoomInTitle: '{LA_MAPBB_ZOOMINTITLE}',
+	zoomOutTitle: '{LA_MAPBB_ZOOMOUTTITLE}',
+	applyTitle: '{LA_MAPBB_APPLYTITLE}',
+	cancelTitle: '{LA_MAPBB_CANCELTITLE}',
+	fullScreenTitle: '{LA_MAPBB_FULLSCREENTITLE}',
+	helpTitle: '{LA_MAPBB_HELPTITLE}',
+	outerTitle: '{LA_MAPBB_OUTERTITLE}',
+	polylineTitle: '{LA_MAPBB_POLYLINETITLE}',
+	polygonTitle: '{LA_MAPBB_POLYGONTITLE}',
+	markerTitle: '{LA_MAPBB_MARKERTITLE}',
+	drawCancelTitle: '{LA_MAPBB_DRAWCANCELTITLE}',
+	markerTooltip: '{LA_MAPBB_MARKERTOOLTIP}',
+	polylineStartTooltip: '{LA_MAPBB_POLYLINESTARTTOOLTIP}',
+	polylineContinueTooltip: '{LA_MAPBB_POLYLINECONTINUETOOLTIP}',
+	polylineEndTooltip: '{LA_MAPBB_POLYLINEENDTOOLTIP}',
+	polygonStartTooltip: '{LA_MAPBB_POLYGONSTARTTOOLTIP}',
+	polygonContinueTooltip: '{LA_MAPBB_POLYGONCONTINUETOOLTIP}',
+	polygonEndTooltip: '{LA_MAPBB_POLYGONENDTOOLTIP}',
+	helpContents: '{LA_MAPBB_HELPCONTENTS}'.split('@')
+});
+//-->
+</script>
+<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/simple_header.html">
+			<edit>
+				<find><![CDATA[</head>]]></find>
+				<action type="before-add"><![CDATA[
+<!-- IF S_MAPBBCODE -->
+<link rel="stylesheet" href="includes/mapbbcode/leaflet.css" />
+<!--[if lte IE 8]>
+	<link rel="stylesheet" href="includes/mapbbcode/leaflet.ie.css" />
+<![endif]-->
+<script src="includes/mapbbcode/leaflet.js"></script>
+<script src="includes/mapbbcode/Bing.js"></script>
+<script src="includes/mapbbcode/mapbbcode.js"></script>
+<script src="includes/mapbbcode/mapbbcode-config.js"></script>
+<script language="Javascript" type="text/javascript">
+<!--
+var mapBBcode = new MapBBCode({
+	libPath: 'includes/mapbbcode/',
+	layers: '{LAYERS}'.split(','),
+	defaultZoom: {DEFAULT_ZOOM}+0,
+	defaultPosition: [{DEFAULT_POS}],
+	viewWidth: {VIEW_WIDTH}+0,
+	viewHeight: {VIEW_HEIGHT}+0,
+	fullViewHeight: {FULL_HEIGHT}+0,
+	editorHeight: {EDITOR_HEIGHT}+0,
+	windowWidth: {WINDOW_WIDTH}+0,
+	windowHeight: {WINDOW_HEIGHT}+0,
+	fullFromStart: {ALWAYS_FULL},
+	preferStandardLayerSwitcher: {STANDARD_SWITCHER},
+	hideInsideClasses: []
+});
+mapBBcode.setStrings({
+	zoomInTitle: '{LA_MAPBB_ZOOMINTITLE}',
+	zoomOutTitle: '{LA_MAPBB_ZOOMOUTTITLE}',
+	fullScreenTitle: '{LA_MAPBB_FULLSCREENTITLE}',
+	outerTitle: '{LA_MAPBB_OUTERTITLE}'
+});
+//-->
+</script>
+<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+	</action-group>
+</mod>
