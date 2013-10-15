@@ -59,6 +59,7 @@ $versions = array(
 	'0.9.0' => array(
 
 		'config_add' => array(
+			array('allow_maps', '1', 0),
 			array('mapbb_default_zoom', '2', 0),
 			array('mapbb_default_pos', '22,11', 0),
 			array('mapbb_view_width', '600', 0),
