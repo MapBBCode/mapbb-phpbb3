@@ -133,7 +133,7 @@ function mapbbcode_bbcode($action, $version)
 	// Check if exists
 	$sql = 'SELECT * FROM ' . BBCODES_TABLE . " WHERE LOWER(bbcode_tag) = 'map'";
 	$result = $db->sql_query($sql);
-	$row_exist = $db->sql_fetchrow($result);
+	$row_exists = $db->sql_fetchrow($result);
 	$db->sql_freeresult($result);
 
 	if (!$row_exists)
@@ -148,7 +148,7 @@ function mapbbcode_bbcode($action, $version)
 			'first_pass_match'		=> '!\[map(=[0-9,.]+)?\](.*?)\[/map\]!ies',
 			'first_pass_replace'	=> '\'[map:$uid${1}]\'.str_replace(array("\\r\\n", \'\\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/map:$uid]\'',
 			'second_pass_match'		=> '!\[map:($uid)(=[0-9,.]+)?\](.*?)\[/map:$uid\]!se',
-			'second_pass_replace'	=> '\'<div id="map${1}\'.$i.\'">[map${2}]${3}[/map]</div><script language="javascript">if(mapBBcode) mapBBcode.show(\\\'map${1}\'.($i++).\'\\\');</script>\'',
+			'second_pass_replace'	=> '\'<div id="map${1}\'.$mapid.\'">[map${2}]${3}[/map]</div><script language="javascript">if(mapBBcode) mapBBcode.show(\\\'map${1}\'.($mapid++).\'\\\');</script>\'',
 		);
 		$result = $db->sql_query('INSERT INTO ' . BBCODES_TABLE . $db->sql_build_array('INSERT', $sql_ary));
 	}

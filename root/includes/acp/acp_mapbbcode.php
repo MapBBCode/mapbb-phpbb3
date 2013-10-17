@@ -83,14 +83,13 @@ class acp_mapbbcode
 			set_config('mapbb_outer_link', $outer_link);
 			set_config('mapbb_allowed_tags', $allowed_tags);
 
-			add_log('admin', 'LOG_CONFIG_MAPBBCODE' . $log);
+			add_log('admin', 'LOG_CONFIG_MAPBBCODE');
 			trigger_error($user->lang['CONFIG_UPDATED'] . adm_back_link($this->u_action));
 		}
 
 		$template->assign_vars(array(
 			'U_ACTION'			=> $this->u_action,
 			'MAPS_ENABLE'		=> $maps_enable,
-			'JAB_HOST'			=> $jab_host,
 			'ALLOW_MAPS'		=> $maps_enable,
 			'LAYERS'			=> $layers,
 			'DEFAULT_ZOOM'		=> $default_zoom,

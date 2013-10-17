@@ -60,7 +60,8 @@ if ($map_status)
 			<edit>
 				<find><![CDATA[		$str = array('search' => array(), 'replace' => array());]]></find>
 				<action type="before-add"><![CDATA[		// Check for map bbcode to insert required header
-		if (preg_match('/\[map[^]]*(?:=[0-9.,-]+)?\].*?\[\/map[^\]]*\]/', $message))
+		$mapid = 0;
+		if (!defined('MAPBBCODE') && preg_match('/\[map[^]]*(?:=[0-9.,-]+)?\].*?\[\/map[^\]]*\]/', $message))
 		{
 			define('MAPBBCODE', 1);
 		}]]></action>
