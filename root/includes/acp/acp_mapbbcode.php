@@ -37,7 +37,7 @@ class acp_mapbbcode
 		}
 
 		$this->tpl_name = 'acp_mapbbcode';
-		$this->page_title = 'ACP_MAPBBCODE';
+		$this->page_title = 'MAPBB_CONFIG';
 
 		$maps_enable		= request_var('maps_enable',			(bool)		$config['allow_maps']);
 		$layers				= request_var('layers',				(string)	$config['mapbb_layers']);

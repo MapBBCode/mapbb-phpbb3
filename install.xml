@@ -33,7 +33,7 @@
 			<file from="root/includes/hooks/hook_mapbbcode.php" to="includes/hooks/hook_mapbbcode.php"/>
 			<file from="root/language/en/mods/info_acp_mapbbcode.php" to="language/en/mods/info_acp_mapbbcode.php"/>
 			<file from="root/language/en/mods/mapbbcode.php" to="language/en/mods/mapbbcode.php"/>
-			<file from="root/includes/mapbbcode/*.*" to="includes/mapbbcode/*.*"/>
+			<file from="root/mapbbcode/*.*" to="mapbbcode/*.*"/>
 			<file from="root/install_mapbbcode.php" to="install_mapbbcode.php"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
 		</copy>
@@ -99,21 +99,21 @@ if ($map_status)
 			<edit>
 				<find><![CDATA[</head>]]></find>
 				<action type="before-add"><![CDATA[<!-- IF S_MAPBBCODE -->
-<link rel="stylesheet" href="includes/mapbbcode/leaflet.css" />
-<link rel="stylesheet" href="includes/mapbbcode/leaflet.draw.css" />
+<link rel="stylesheet" href="mapbbcode/leaflet.css" />
+<link rel="stylesheet" href="mapbbcode/leaflet.draw.css" />
 <!--[if lte IE 8]>
-	<link rel="stylesheet" href="includes/mapbbcode/leaflet.ie.css" />
-	<link rel="stylesheet" href="includes/mapbbcode/leaflet.draw.ie.css" />
+	<link rel="stylesheet" href="mapbbcode/leaflet.ie.css" />
+	<link rel="stylesheet" href="mapbbcode/leaflet.draw.ie.css" />
 <![endif]-->
-<script src="includes/mapbbcode/leaflet.js"></script>
-<script src="includes/mapbbcode/leaflet.draw.js"></script>
-<script src="includes/mapbbcode/Bing.js"></script>
-<script src="includes/mapbbcode/mapbbcode.js"></script>
-<script src="includes/mapbbcode/mapbbcode-config.js"></script>
+<script src="mapbbcode/leaflet.js"></script>
+<script src="mapbbcode/leaflet.draw.js"></script>
+<script src="mapbbcode/Bing.js"></script>
+<script src="mapbbcode/mapbbcode.js"></script>
+<script src="mapbbcode/mapbbcode-config.js"></script>
 <script language="Javascript" type="text/javascript">
 <!--
 var mapBBcode = new MapBBCode({
-	libPath: 'includes/mapbbcode/',
+	libPath: 'mapbbcode/',
 	layers: '{LAYERS}'.split(','),
 	defaultZoom: {DEFAULT_ZOOM}+0,
 	defaultPosition: [{DEFAULT_POS}],
@@ -180,18 +180,18 @@ mapBBcode.setStrings({
 			<edit>
 				<find><![CDATA[</head>]]></find>
 				<action type="before-add"><![CDATA[<!-- IF S_MAPBBCODE -->
-<link rel="stylesheet" href="includes/mapbbcode/leaflet.css" />
+<link rel="stylesheet" href="mapbbcode/leaflet.css" />
 <!--[if lte IE 8]>
-	<link rel="stylesheet" href="includes/mapbbcode/leaflet.ie.css" />
+	<link rel="stylesheet" href="mapbbcode/leaflet.ie.css" />
 <![endif]-->
-<script src="includes/mapbbcode/leaflet.js"></script>
-<script src="includes/mapbbcode/Bing.js"></script>
-<script src="includes/mapbbcode/mapbbcode.js"></script>
-<script src="includes/mapbbcode/mapbbcode-config.js"></script>
+<script src="mapbbcode/leaflet.js"></script>
+<script src="mapbbcode/Bing.js"></script>
+<script src="mapbbcode/mapbbcode.js"></script>
+<script src="mapbbcode/mapbbcode-config.js"></script>
 <script language="Javascript" type="text/javascript">
 <!--
 var mapBBcode = new MapBBCode({
-	libPath: 'includes/mapbbcode/',
+	libPath: 'mapbbcode/',
 	layers: '{LAYERS}'.split(','),
 	defaultZoom: {DEFAULT_ZOOM}+0,
 	defaultPosition: [{DEFAULT_POS}],
