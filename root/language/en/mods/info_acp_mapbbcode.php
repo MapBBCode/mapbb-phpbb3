@@ -60,6 +60,7 @@ $lang = array_merge($lang, array(
 	'INSTALLER_MAPBBCODE_REMOVE' => 'Removed Map BBCode from the bbcode table',
 	'ACP_MAPBBCODE_SETTINGS' => 'MapBBCode',
 	'LOG_CONFIG_MAPBBCODE' => '<strong>Altered MapBBCode settings</strong>',
+	'MAPBB_TOO_MANY_BBCODES' => 'You cannot create any more BBCodes. Please remove one or more BBCodes then try again.',
 	'MAPBB_GLOBAL' => 'Map BBCode Settings',
 	'MAPS_ENABLE' => 'Allow maps',
 	'MAPBB_CONFIG' => 'MapBBCode Configuration',
@@ -75,7 +76,9 @@ $lang = array_merge($lang, array(
 	'MAPBB_STANDARD_SWITCHER' => 'Hide layer list behind a button control',
 	'MAPBB_OUTER_LINK' => 'External link template, if needed (parameters: {zoom}, {lat}, {lon})',
 	'MAPBB_OUTER_LINK_EXAMPLE' => 'Example: http://www.openstreetmap.org/#map={zoom}/{lat}/{lon}',
-	'MAPBB_ALLOWED_TAGS' => 'Allowed HTML tags in popups (regular expression)'
+	'MAPBB_ALLOWED_TAGS' => 'Allowed HTML tags in popups (regular expression)',
+	'MAPBB_ENABLE_EXTERNAL' => 'Enable including and uploading maps to MapBBCode Share',
+	'MAPBB_SHARE_SERVER' => 'MapBBCode Share server hostname'
 ));
 
 ?>

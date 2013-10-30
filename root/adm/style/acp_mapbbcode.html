@@ -1,7 +1,7 @@
 <!-- INCLUDE overall_header.html -->
 <link rel="stylesheet" href="../mapbbcode/leaflet.css" />
 <!--[if lte IE 8]>
-    <link rel="stylesheet" href="../mapbbcode/leaflet.ie.css" />
+	<link rel="stylesheet" href="../mapbbcode/leaflet.ie.css" />
 <![endif]-->
 <script src="../mapbbcode/leaflet.js"></script>
 <script src="../mapbbcode/Bing.js"></script>
@@ -35,60 +35,69 @@
 
 <fieldset>
 	<legend>{L_MAPBB_GLOBAL}</legend>
-    <dl>
-        <dt><label for="maps_enable">{L_MAPS_ENABLE}:</label></dt>
-        <dd><label><input type="radio" class="radio" id="maps_enable" name="maps_enable" value="1"<!-- IF MAPS_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
-            <label><input type="radio" class="radio" name="maps_enable" value="0"<!-- IF not MAPS_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
-    </dl>
+	<dl>
+		<dt><label for="maps_enable">{L_MAPS_ENABLE}:</label></dt>
+		<dd><label><input type="radio" class="radio" id="maps_enable" name="maps_enable" value="1"<!-- IF MAPS_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+			<label><input type="radio" class="radio" name="maps_enable" value="0"<!-- IF not MAPS_ENABLE --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="enable_external">{L_MAPBB_ENABLE_EXTERNAL}:</label></dt>
+		<dd><label><input type="radio" class="radio" id="enable_external" name="enable_external" value="1"<!-- IF ENABLE_EXTERNAL --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+			<label><input type="radio" class="radio" name="enable_external" value="0"<!-- IF not ENABLE_EXTERNAL --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
 </fieldset>
 <div id="panel_config"></div>
 
 <fieldset>
 	<dl>
 		<dt>{L_MAPBB_LAYERS}</dt>
-        <dd><select id="layer_select" size="1"></select> <input type="button" id="addbutton"/></dd>
+		<dd><select id="layer_select" size="1"></select> <input type="button" id="addbutton"/></dd>
 	</dl>
 	<dl style="display: none;" id="bing_key_row">
 		<dt id="bing_key_title"></dt>
 		<dd><input class="post" type="text" id="bing_key"/></dd>
 	</dl>
-    <dl>
-        <dt>{L_MAPBB_DEFAULT_ZOOM_POS}</dt>
-        <dd id="default_zoom_pos"></dd>
-    </dl>
-    <dl>
-        <dt>{L_MAPBB_PANEL_SIZE}</dt>
-        <dd id="panel_size"></dd>
-    </dl>
-    <dl>
-        <dt>{L_MAPBB_FULL_HEIGHT}</dt>
-        <dd id="full_height"></dd>
-    </dl>
-    <dl>
-        <dt>{L_MAPBB_WINDOW_SIZE}</dt>
-        <dd id="window_size"></dd>
-    </dl>
-    <dl>
-        <dt>{L_MAPBB_EDITOR_HEIGHT}</dt>
-        <dd id="editor_height"></dd>
-    </dl>
+	<dl>
+		<dt>{L_MAPBB_DEFAULT_ZOOM_POS}</dt>
+		<dd id="default_zoom_pos"></dd>
+	</dl>
+	<dl>
+		<dt>{L_MAPBB_PANEL_SIZE}</dt>
+		<dd id="panel_size"></dd>
+	</dl>
+	<dl>
+		<dt>{L_MAPBB_FULL_HEIGHT}</dt>
+		<dd id="full_height"></dd>
+	</dl>
+	<dl>
+		<dt>{L_MAPBB_WINDOW_SIZE}</dt>
+		<dd id="window_size"></dd>
+	</dl>
+	<dl>
+		<dt>{L_MAPBB_EDITOR_HEIGHT}</dt>
+		<dd id="editor_height"></dd>
+	</dl>
 </fieldset>
 
 <fieldset>
-    <legend>{L_MAPBB_OTHER}</legend>
-    <dl>
-        <dt><label for="standard_switcher">{L_MAPBB_STANDARD_SWITCHER}:</label></dt>
-        <dd><label><input type="radio" class="radio" id="standard_switcher" name="standard_switcher" value="1"<!-- IF STANDARD_SWITCHER --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
-            <label><input type="radio" class="radio" name="standard_switcher" value="0"<!-- IF not STANDARD_SWITCHER --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
-    </dl>
-    <dl>
-        <dt><label for="outer_link">{L_MAPBB_OUTER_LINK}:</label><br /><span>{L_MAPBB_OUTER_LINK_EXAMPLE}</span></dt>
-        <dd><input type="text" id="outer_link" name="outer_link" maxlength="120" size="40" value="{OUTER_LINK}" /></dd>
-    </dl>
-    <dl>
-        <dt><label for="allowed_tags">{L_MAPBB_ALLOWED_TAGS}:</label></dt>
-        <dd><input type="text" id="allowed_tags" name="allowed_tags" maxlength="80" size="40" value="{ALLOWED_TAGS}" /></dd>
-    </dl>
+	<legend>{L_MAPBB_OTHER}</legend>
+	<dl>
+		<dt><label for="standard_switcher">{L_MAPBB_STANDARD_SWITCHER}:</label></dt>
+		<dd><label><input type="radio" class="radio" id="standard_switcher" name="standard_switcher" value="1"<!-- IF STANDARD_SWITCHER --> checked="checked"<!-- ENDIF --> /> {L_ENABLED}</label>
+			<label><input type="radio" class="radio" name="standard_switcher" value="0"<!-- IF not STANDARD_SWITCHER --> checked="checked"<!-- ENDIF --> /> {L_DISABLED}</label></dd>
+	</dl>
+	<dl>
+		<dt><label for="outer_link">{L_MAPBB_OUTER_LINK}:</label><br /><span>{L_MAPBB_OUTER_LINK_EXAMPLE}</span></dt>
+		<dd><input type="text" id="outer_link" name="outer_link" maxlength="120" size="40" value="{OUTER_LINK}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="allowed_tags">{L_MAPBB_ALLOWED_TAGS}:</label></dt>
+		<dd><input type="text" id="allowed_tags" name="allowed_tags" maxlength="80" size="40" value="{ALLOWED_TAGS}" /></dd>
+	</dl>
+	<dl>
+		<dt><label for="outer_link">{L_MAPBB_SHARE_SERVER}:</label></dt>
+		<dd><input type="text" id="share_server" name="share_server" maxlength="80" size="40" value="{SHARE_SERVER}" /></dd>
+	</dl>
 </fieldset>
 
 <fieldset class="submit-buttons">
@@ -103,13 +112,13 @@
 // All scripts in this file are licensed WTFPL.
 
 function isTrue(val) {
-    return val && val !== '0' && val !== 'false';
+	return val && val !== '0' && val !== 'false';
 }
 
 function updateTableValues() {
 	var f = document.getElementById('acp_mapbbcode'),
-	    full = isTrue(f.elements['always_full'].value),
-	    win = isTrue(f.elements['editor_window'].value);
+		full = isTrue(f.elements['always_full'].value),
+		win = isTrue(f.elements['editor_window'].value);
 	document.getElementById('default_zoom_pos').innerHTML = f.elements['default_zoom'].value + ',' + f.elements['default_pos'].value;
 	document.getElementById('panel_size').innerHTML = (full ? '<s>' : '') + f.elements['view_width'].value + 'x' + f.elements['view_height'].value + (full ? '</s>' : '');
 	document.getElementById('full_height').innerHTML = f.elements['full_height'].value;
@@ -128,7 +137,7 @@ var config = new MapBBCodeConfig({
 	windowWidth: {WINDOW_WIDTH}+0,
 	windowHeight: {WINDOW_HEIGHT}+0,
 	fullFromStart: isTrue('{ALWAYS_FULL}'),
-//        editorTypeFixed: true, // uncomment if needed
+//		editorTypeFixed: true, // uncomment if needed
 	editorInWindow: isTrue('{EDITOR_WINDOW}') // set to true or false is needed
 });
 config.setStrings({
@@ -148,10 +157,10 @@ config.setStrings({
 	shrinkTitle: '{L_MAPBB_SHRINKTITLE}',
 	zoomInTitle: '{L_MAPBB_ZOOMINTITLE}',
 	zoomOutTitle: '{L_MAPBB_ZOOMOUTTITLE}',
-    selectLayer: '{L_MAPBB_SELECT_LAYER}',
-    addLayer: '{L_MAPBB_ADD_LAYER}',
-    keyNeeded: '{L_MAPBB_BING_KEY}',
-    keyNeededAlert: '{L_MAPBB_KEY_NEEDED}'
+	selectLayer: '{L_MAPBB_SELECT_LAYER}',
+	addLayer: '{L_MAPBB_ADD_LAYER}',
+	keyNeeded: '{L_MAPBB_BING_KEY}',
+	keyNeededAlert: '{L_MAPBB_KEY_NEEDED}'
 });
 config.on('show change', function(options) {
 	var f = document.getElementById('acp_mapbbcode');
@@ -169,12 +178,12 @@ config.on('show change', function(options) {
 	updateTableValues();
 });
 config.bindLayerAdder({
-    select: 'layer_select',
-    button: 'addbutton',
-    keyBlock: 'bing_key_row',
-    keyBlockDisplay: 'block',
-    keyTitle: 'bing_key_title',
-    keyValue: 'bing_key'
+	select: 'layer_select',
+	button: 'addbutton',
+	keyBlock: 'bing_key_row',
+	keyBlockDisplay: 'block',
+	keyTitle: 'bing_key_title',
+	keyValue: 'bing_key'
 });
 config.show('panel_config');
 // -->

@@ -36,40 +36,56 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
 $lang = array_merge($lang, array(
-    'BBCODE_MAP_HELP' => 'Вставить карту: [map]широта,долгота(подпись); ...[/map]  (alt+m)',
-    'MAPS_ARE_ON' => '[map] <em>ВКЛЮЧЁН</em>',
-    'MAPS_ARE_OFF' => '[map] <em>ВЫКЛЮЧЕН</em>',
+	'BBCODE_MAP_HELP' => 'Вставить карту: [map]широта,долгота(подпись); ...[/map]  (alt+m)',
+	'MAPS_ARE_ON' => '[map] <em>ВКЛЮЧЁН</em>',
+	'MAPS_ARE_OFF' => '[map] <em>ВЫКЛЮЧЕН</em>',
 
-    'MAPBB_CLOSE' => 'Закрыть', // close feature editing popup
-    'MAPBB_REMOVE' => 'Удалить', // delete feature from popup
-    'MAPBB_APPLY' => 'Вставить код', // button on an editing map to apply changes
-    'MAPBB_CANCEL' => 'Отменить', // button on an editing map to discard changes
-    'MAPBB_TITLE' => 'Надпись', // prompt for marker title text
+	'MAPBB_CLOSE' => 'Закрыть', // close feature editing popup
+	'MAPBB_REMOVE' => 'Удалить', // delete feature from popup
+	'MAPBB_APPLY' => 'Вставить код', // button on an editing map to apply changes
+	'MAPBB_CANCEL' => 'Отменить', // button on an editing map to discard changes
+	'MAPBB_TITLE' => 'Надпись', // prompt for marker title text
 
-    // button titles
-    'MAPBB_ZOOMINTITLE' => 'Приблизить',
-    'MAPBB_ZOOMOUTTITLE' => 'Отдалить',
-    'MAPBB_APPLYTITLE' => 'Сохранить изменения',
-    'MAPBB_CANCELTITLE' => 'Отменить изменения',
-    'MAPBB_FULLSCREENTITLE' => 'Растянуть или сжать панель карты',
-    'MAPBB_HELPTITLE' => 'Открыть окно справки',
-    'MAPBB_OUTERTITLE' => 'Открыть внешний сайт с картой этого места',
+	// button titles
+	'MAPBB_ZOOMINTITLE' => 'Приблизить',
+	'MAPBB_ZOOMOUTTITLE' => 'Отдалить',
+	'MAPBB_APPLYTITLE' => 'Сохранить изменения',
+	'MAPBB_CANCELTITLE' => 'Отменить изменения',
+	'MAPBB_FULLSCREENTITLE' => 'Растянуть или сжать панель карты',
+	'MAPBB_HELPTITLE' => 'Открыть окно справки',
+	'MAPBB_OUTERTITLE' => 'Открыть внешний сайт с картой этого места',
 
-    // Leaflet.draw
-    'MAPBB_POLYLINETITLE' => 'Нарисовать ломаную',
-    'MAPBB_POLYGONTITLE' => 'Нарисовать область',
-    'MAPBB_MARKERTITLE' => 'Добавить маркер',
-    'MAPBB_DRAWCANCELTITLE' => 'Отменить рисование',
-    'MAPBB_MARKERTOOLTIP' => 'Нажмите на карту для установки маркера',
-    'MAPBB_POLYLINESTARTTOOLTIP' => 'Нажмите, чтобы начать рисование линии',
-    'MAPBB_POLYLINECONTINUETOOLTIP' => 'Нажмите для продолжения линии',
-    'MAPBB_POLYLINEENDTOOLTIP' => 'Для завершения линии нажмите на её последнюю точку',
-    'MAPBB_POLYGONSTARTTOOLTIP' => 'Нажмите, чтобы начать рисование контура',
-    'MAPBB_POLYGONCONTINUETOOLTIP' => 'Нажмите для продолжения контура',
-    'MAPBB_POLYGONENDTOOLTIP' => 'Для замыкания контура нажмите на его начальную точку',
+	'MAPBB_SUBMITWARNING' => 'Вы изменили карту и не сохранили её. Правки будут утеряны. Продолжить?',
 
-    // help: array of html paragraphs, simply joined together. First line is <h1>, start with '#' for <h2>.
-    'MAPBB_HELPCONTENTS' => implode('@', array(
+	// share
+	'MAPBB_EXPORT' => 'Скачать',
+	'MAPBB_EXPORTTITLE' => 'Сохранить эту карту на диск',
+	'MAPBB_UPLOAD' => 'На сервер',
+	'MAPBB_UPLOADTITLE' => 'Загрузить эту карту в интернет-библиотеку',
+	'MAPBB_UPLOADING' => 'Идёт загрузка',
+	'MAPBB_UPLOADERROR' => 'Загрузка не удалась из-за ошибки',
+	'MAPBB_UPLOADSUCCESS' => 'Карта загружена. Сохраните эту ссылку в закладки, чтобы потом править карту',
+	'MAPBB_SHAREDFORMHEADER' => 'Нет объектов для загрузки. Введите ссылку на карту в MapBBCode Share',
+	'MAPBB_SHAREDFORMERROR' => 'В настройках панели карты прописан неправильный адрес.<br>Свяжитесь с администратором.',
+	'MAPBB_SHAREDFORMINVALIDCODE' => 'Неправильный код карты',
+        'MAPBB_SHAREDCODELOADING' => 'Загружается <a href="{url}" target="mapbbcode_outer">карта</a>...',
+	'MAPBB_SHAREDCODEERROR' => 'Внешний сайт выдал ошибку вместо карты<br><br><a href="{url}" target="mapbbcode_outer">Открыть карту в новом окне</a>',
+
+	// Leaflet.draw
+	'MAPBB_POLYLINETITLE' => 'Нарисовать ломаную',
+	'MAPBB_POLYGONTITLE' => 'Нарисовать область',
+	'MAPBB_MARKERTITLE' => 'Добавить маркер',
+	'MAPBB_DRAWCANCELTITLE' => 'Отменить рисование',
+	'MAPBB_MARKERTOOLTIP' => 'Нажмите на карту для установки маркера',
+	'MAPBB_POLYLINESTARTTOOLTIP' => 'Нажмите, чтобы начать рисование линии',
+	'MAPBB_POLYLINECONTINUETOOLTIP' => 'Нажмите для продолжения линии',
+	'MAPBB_POLYLINEENDTOOLTIP' => 'Для завершения линии нажмите на её последнюю точку',
+	'MAPBB_POLYGONSTARTTOOLTIP' => 'Нажмите, чтобы начать рисование контура',
+	'MAPBB_POLYGONCONTINUETOOLTIP' => 'Нажмите для продолжения контура',
+	'MAPBB_POLYGONENDTOOLTIP' => 'Для замыкания контура нажмите на его начальную точку',
+
+	// help: array of html paragraphs, simply joined together. First line is <h1>, start with '#' for <h2>.
+	'MAPBB_HELPCONTENTS' => implode('@', array(
 	'Редактор Map BBCode',
 	'Вы открыли это окно из редактора карты. Он появляется по нажатию кнопки «Map». Когда в форме редактирования сообщения курсор стоит внутри кода [map], вы будете редактировать этот код, иначе создадите новый код карты и после нажатия «Применить» получите его в позиции курсора.',
 	'# BBCode',

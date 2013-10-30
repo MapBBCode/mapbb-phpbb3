@@ -39,7 +39,8 @@ class acp_mapbbcode
 		$this->tpl_name = 'acp_mapbbcode';
 		$this->page_title = 'MAPBB_CONFIG';
 
-		$maps_enable		= request_var('maps_enable',			(bool)		$config['allow_maps']);
+		$maps_enable		= request_var('maps_enable',		(bool)		$config['allow_maps']);
+		$enable_external	= request_var('enable_external',	(bool)		$config['mapbb_enable_external']);
 		$layers				= request_var('layers',				(string)	$config['mapbb_layers']);
 		$default_zoom		= request_var('default_zoom',		(int)		$config['mapbb_default_zoom']);
 		$default_pos		= request_var('default_pos',		(string)	$config['mapbb_default_pos']);
@@ -54,6 +55,7 @@ class acp_mapbbcode
 		$standard_switcher	= request_var('standard_switcher',	(bool)		$config['mapbb_standard_switcher']);
 		$outer_link			= request_var('outer_link',			(string)	$config['mapbb_outer_link']);
 		$allowed_tags		= request_var('allowed_tags',		(string)	$config['mapbb_allowed_tags']);
+		$share_server		= request_var('share_server',		(string)	$config['mapbb_share_server']);
 
 		$form_name = 'acp_mapbbcode';
 		add_form_key($form_name);
@@ -68,6 +70,7 @@ class acp_mapbbcode
 			$error = array();
 
 			set_config('allow_maps', $maps_enable);
+			set_config('mapbb_enable_external', $enable_external);
 			set_config('mapbb_layers', $layers);
 			set_config('mapbb_default_zoom', $default_zoom);
 			set_config('mapbb_default_pos', $default_pos);
@@ -82,6 +85,7 @@ class acp_mapbbcode
 			set_config('mapbb_standard_switcher', $standard_switcher);
 			set_config('mapbb_outer_link', $outer_link);
 			set_config('mapbb_allowed_tags', $allowed_tags);
+			set_config('mapbb_share_server', $share_server);
 
 			add_log('admin', 'LOG_CONFIG_MAPBBCODE');
 			trigger_error($user->lang['CONFIG_UPDATED'] . adm_back_link($this->u_action));
@@ -91,6 +95,7 @@ class acp_mapbbcode
 			'U_ACTION'			=> $this->u_action,
 			'MAPS_ENABLE'		=> $maps_enable,
 			'ALLOW_MAPS'		=> $maps_enable,
+			'ENABLE_EXTERNAL'	=> $enable_external,
 			'LAYERS'			=> $layers,
 			'DEFAULT_ZOOM'		=> $default_zoom,
 			'DEFAULT_POS'		=> $default_pos,
@@ -105,6 +110,7 @@ class acp_mapbbcode
 			'STANDARD_SWITCHER'	=> $standard_switcher,
 			'OUTER_LINK'		=> $outer_link,
 			'ALLOWED_TAGS'		=> $allowed_tags,
+			'SHARE_SERVER'		=> $share_server,
 		));
 	}
 }

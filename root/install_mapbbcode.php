@@ -73,6 +73,8 @@ $versions = array(
 			array('mapbb_outer_link', '', 0),
 			array('mapbb_allowed_tags', '[auib]|span|br|em|strong|tt', 0),
 			array('mapbb_standard_switcher', '1', 0),
+			array('mapbb_enable_external', '0', 0),
+			array('mapbb_share_server', 'http://share.mapbbcode.org/', 0),
 			array('mapbb_layers', 'OpenStreetMap', 0),
 		),
 
@@ -93,6 +95,9 @@ $versions = array(
 function mapbbcode_bbcode($action, $version)
 {
 	global $db, $template, $user;
+
+        if( !defined('BBCODE_LIMIT') )
+            define('BBCODE_LIMIT', 1000);
 
 	if( $action != 'install' && $action != 'update' )
 	{
@@ -126,7 +131,7 @@ function mapbbcode_bbcode($action, $version)
 
 	if ($next_bbcode_id > BBCODE_LIMIT)
 	{
-		trigger_error($user->lang['TOO_MANY_BBCODES']);
+		trigger_error($user->lang['MAPBB_TOO_MANY_BBCODES']);
 	}
 	$next_bbcode_id++;
 
@@ -149,6 +154,21 @@ function mapbbcode_bbcode($action, $version)
 			'first_pass_replace'	=> '\'[map:$uid${1}]\'.str_replace(array("\\r\\n", \'\\"\', \'\\\'\', \'(\', \')\'), array("\n", \'"\', \'&#39;\', \'&#40;\', \'&#41;\'), trim(\'${2}\')).\'[/map:$uid]\'',
 			'second_pass_match'		=> '!\[map:($uid)(=[0-9,.]+)?\](.*?)\[/map:$uid\]!se',
 			'second_pass_replace'	=> '\'<div id="map${1}\'.$mapid.\'">[map${2}]${3}[/map]</div><script language="javascript">if(mapBBcode) mapBBcode.show(\\\'map${1}\'.($mapid++).\'\\\');</script>\'',
+		);
+                $result = $db->sql_query('INSERT INTO ' . BBCODES_TABLE . $db->sql_build_array('INSERT', $sql_ary));
+
+                // now for [mapid]
+		$sql_ary = array(
+			'bbcode_id'				=> ((int) $next_bbcode_id) + 1,
+			'bbcode_tag'			=> 'mapid',
+			'bbcode_helpline'		=> '',
+			'display_on_posting'	=> 0,
+			'bbcode_match'			=> '[mapid]{TEXT}[/mapid]',
+			'bbcode_tpl'			=> '<div id="map{DIVID}"></div><script language="javascript">if(mapBBcode) mapBBcode.showExternal(\'map{DIVID}\', \'{MAPID}\');</script>',
+			'first_pass_match'		=> '!\[mapid\]([a-z]+)\[/mapid\]!ie',
+			'first_pass_replace'	=> '\'[mapid:$uid]${1}[/mapid:$uid]\'',
+			'second_pass_match'		=> '!\[mapid:($uid)\]([a-z]+)\[/mapid:$uid\]!e',
+			'second_pass_replace'	=> '\'<div id="map${1}\'.$mapid.\'"></div><script language="javascript">if(mapBBcode) mapBBcode.showExternal(\\\'map${1}\'.($mapid++).\'\\\', \\\'${2}\\\');</script>\'',
 		);
 		$result = $db->sql_query('INSERT INTO ' . BBCODES_TABLE . $db->sql_build_array('INSERT', $sql_ary));
 	}

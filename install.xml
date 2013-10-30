@@ -61,7 +61,7 @@ if ($map_status)
 				<find><![CDATA[		$str = array('search' => array(), 'replace' => array());]]></find>
 				<action type="before-add"><![CDATA[		// Check for map bbcode to insert required header
 		$mapid = 0;
-		if (!defined('MAPBBCODE') && preg_match('/\[map[^]]*(?:=[0-9.,-]+)?\].*?\[\/map[^\]]*\]/', $message))
+                if (!defined('MAPBBCODE') && preg_match('/\[map[^\]]*(?:=[0-9.,-]+)?\].*?\[\/map[^\]]*\]|\[mapid[^\]]*\][a-z]+\[\/mapid[^\]]*\]/', $message))
 		{
 			define('MAPBBCODE', 1);
 		}]]></action>
@@ -113,7 +113,7 @@ if ($map_status)
 <script language="Javascript" type="text/javascript">
 <!--
 var mapBBcode = new MapBBCode({
-	libPath: 'mapbbcode/',
+	windowPath: 'mapbbcode/',
 	layers: '{LAYERS}'.split(','),
 	defaultZoom: {DEFAULT_ZOOM}+0,
 	defaultPosition: [{DEFAULT_POS}],
@@ -125,8 +125,14 @@ var mapBBcode = new MapBBCode({
 	windowHeight: {WINDOW_HEIGHT}+0,
 	fullFromStart: {ALWAYS_FULL},
 	preferStandardLayerSwitcher: {STANDARD_SWITCHER},
+	outerLinkTemplate: '{OUTER_LINK}',
+	uploadButton: {ENABLE_EXTERNAL},
+	externalEndpoint: '{SHARE_SERVER}',
 	hideInsideClasses: []
 });
+<!-- IF not S_ENABLE_EXTERNAL -->
+mapBBcode.showExternal = function(div, id) {};
+<!-- ENDIF -->
 mapBBcode.setStrings({
 	close: '{LA_MAPBB_CLOSE}',
 	remove: '{LA_MAPBB_REMOVE}',
@@ -140,6 +146,19 @@ mapBBcode.setStrings({
 	fullScreenTitle: '{LA_MAPBB_FULLSCREENTITLE}',
 	helpTitle: '{LA_MAPBB_HELPTITLE}',
 	outerTitle: '{LA_MAPBB_OUTERTITLE}',
+	submitWarning: '{LA_MAPBB_SUBMITWARNING}',
+	exportName: '{LA_MAPBB_EXPORT}',
+	exportTitle: '{LA_MAPBB_EXPORTTITLE}',
+	upload: '{LA_MAPBB_UPLOAD}',
+	uploadTitle: '{LA_MAPBB_UPLOADTITLE}',
+	uploading: '{LA_MAPBB_UPLOADING}',
+	uploadError: '{LA_MAPBB_UPLOADERROR}',
+	uploadSuccess: '{LA_MAPBB_UPLOADSUCCESS}',
+	sharedFormHeader: '{LA_MAPBB_SHAREDFORMHEADER}',
+	sharedFormError: '{LA_MAPBB_SHAREDFORMERROR}',
+	sharedFormInvalidCode: '{LA_MAPBB_SHAREDFORMINVALIDCODE}',
+	sharedCodeLoading: '{LA_MAPBB_SHAREDCODELOADING}',
+	sharedCodeError: '{LA_MAPBB_SHAREDCODEERROR}',
 	polylineTitle: '{LA_MAPBB_POLYLINETITLE}',
 	polygonTitle: '{LA_MAPBB_POLYGONTITLE}',
 	markerTitle: '{LA_MAPBB_MARKERTITLE}',
@@ -191,7 +210,6 @@ mapBBcode.setStrings({
 <script language="Javascript" type="text/javascript">
 <!--
 var mapBBcode = new MapBBCode({
-	libPath: 'mapbbcode/',
 	layers: '{LAYERS}'.split(','),
 	defaultZoom: {DEFAULT_ZOOM}+0,
 	defaultPosition: [{DEFAULT_POS}],
@@ -203,13 +221,20 @@ var mapBBcode = new MapBBCode({
 	windowHeight: {WINDOW_HEIGHT}+0,
 	fullFromStart: {ALWAYS_FULL},
 	preferStandardLayerSwitcher: {STANDARD_SWITCHER},
+	outerLinkTemplate: '{OUTER_LINK}',
+	externalEndpoint: '{SHARE_SERVER}',
 	hideInsideClasses: []
 });
+<!-- IF not S_ENABLE_EXTERNAL -->
+mapBBcode.showExternal = function(div, id) {};
+<!-- ENDIF -->
 mapBBcode.setStrings({
 	zoomInTitle: '{LA_MAPBB_ZOOMINTITLE}',
 	zoomOutTitle: '{LA_MAPBB_ZOOMOUTTITLE}',
 	fullScreenTitle: '{LA_MAPBB_FULLSCREENTITLE}',
-	outerTitle: '{LA_MAPBB_OUTERTITLE}'
+	outerTitle: '{LA_MAPBB_OUTERTITLE}',
+	sharedCodeLoading: '{LA_MAPBB_SHAREDCODELOADING}',
+	sharedCodeError: '{LA_MAPBB_SHAREDCODEERROR}'
 });
 //-->
 </script>

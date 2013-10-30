@@ -60,6 +60,7 @@ $lang = array_merge($lang, array(
 	'INSTALLER_MAPBBCODE_REMOVE' => 'Удаление кода Map BBCode из таблицы',
 	'ACP_MAPBBCODE_SETTINGS' => 'MapBBCode',
 	'LOG_CONFIG_MAPBBCODE' => '<strong>Изменены настройки MapBBCode</strong>',
+	'MAPBB_TOO_MANY_BBCODES' => 'Вы больше не можете создать BBCode. Удалите или переместите некоторые BBCode и попробуйте снова.',
 	'MAPBB_GLOBAL' => 'Параметры BBCode карт',
 	'MAPS_ENABLE' => 'Разрешить карты',
 	'MAPBB_CONFIG' => 'Настройка MapBBCode',
@@ -75,7 +76,9 @@ $lang = array_merge($lang, array(
 	'MAPBB_STANDARD_SWITCHER' => 'Убрать список слоёв за кнопку',
 	'MAPBB_OUTER_LINK' => 'Шаблон внешней ссылки, если кнопка с ней нужна (параметры: {zoom}, {lat}, {lon})',
 	'MAPBB_OUTER_LINK_EXAMPLE' => 'Пример: http://openstreetmap.ru/#layer=M&zoom={zoom}&lat={lat}&lon={lon}',
-	'MAPBB_ALLOWED_TAGS' => 'Допустимые теги в надписях (регулярное выражение)'
+	'MAPBB_ALLOWED_TAGS' => 'Допустимые теги в надписях (регулярное выражение)',
+	'MAPBB_ENABLE_EXTERNAL' => 'Разрешить вставку и загрузку карт на MapBBCode Share',
+	'MAPBB_SHARE_SERVER' => 'Адрес сервера MapBBCode Share'
 ));
 
 ?>
