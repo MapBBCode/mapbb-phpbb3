@@ -1,7 +1,7 @@
 # MapBBCode MOD for phpBB 3
 
 Since I have written a MOD for phpBB 2, it seemed logical to update it for the latest
-version of that forum engine. This is a modification for phpBB 3.0.10 upwards.
+version of that forum engine. This modification is tested on phpBB 3.0.8, .10 and .12.
 It doesn't affect many files, and doesn't rely on lines that are likely to be modified
 by other MODs.
 
