@@ -121,10 +121,10 @@ function updateTableValues() {
 		full = isTrue(f.elements['always_full'].value),
 		win = isTrue(f.elements['editor_window'].value);
 	document.getElementById('default_zoom_pos').innerHTML = f.elements['default_zoom'].value + ',' + f.elements['default_pos'].value;
-	document.getElementById('panel_size').innerHTML = (full ? '<span style="color: #888;">' : '') + f.elements['view_width'].value + 'x' + f.elements['view_height'].value + (full ? '</span>' : '');
+	document.getElementById('panel_size').innerHTML = (full ? '<span style="color: #bbb;">' : '') + f.elements['view_width'].value + 'x' + f.elements['view_height'].value + (full ? '</span>' : '');
 	document.getElementById('full_height').innerHTML = f.elements['full_height'].value;
-	document.getElementById('window_size').innerHTML = (win ? '' : '<span style="color: #888;">') + f.elements['window_width'].value + 'x' + f.elements['window_height'].value + (win ? '' : '</span>');
-	document.getElementById('editor_height').innerHTML = (win ? '<span style="color: #888;">' : '') + f.elements['editor_height'].value + (win ? '</span>' : '');
+	document.getElementById('window_size').innerHTML = (win ? '' : '<span style="color: #bbb;">') + f.elements['window_width'].value + 'x' + f.elements['window_height'].value + (win ? '' : '</span>');
+	document.getElementById('editor_height').innerHTML = (win ? '<span style="color: #bbb;">' : '') + f.elements['editor_height'].value + (win ? '</span>' : '');
 }
 
 var config = new MapBBCodeConfig({
