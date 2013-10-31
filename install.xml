@@ -23,6 +23,7 @@
 		<link-group>
 			<link type="language" href="contrib/ru.xml" lang="en">Russian translation</link>
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Modifications for subsilver2 theme</link>
+			<link type="contrib" href="contrib/board3.xml" lang="en">Modifications for Board3 Portal</link>
 		</link-group>
 	</header>
 	<action-group>

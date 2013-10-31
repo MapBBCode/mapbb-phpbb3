@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
+	<header>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[MapBBCode for Board3]]></title>
+		<github><![CDATA[https://github.com/Zverik/mapbb-phpbb3]]></github>
+		<author-group>
+			<author>
+				<realname><![CDATA[Ilya Zverev]]></realname>
+				<username><![CDATA[Zverik]]></username>
+				<email><![CDATA[zverik@textual.ru]]></email>
+			</author>
+		</author-group>
+		<mod-version>0.9.0</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.12</target-version>
+		</installation>
+		<link-group>
+			<link type="parent" href="../install.xml" lang="en">Main MapBBCode MODX</link>
+			<link type="dependency" lang="en" href="https://www.phpbb.com/customise/db/mod/advanced_bbcode_box_3/">Board3 Portal should be installed</link>
+		</link-group>
+	</header>
+	<action-group>
+		<open src="portal/modules/portal_custom.php">
+			<edit>
+				<find><![CDATA[					$custom_code = generate_text_for_edit($portal_config['board3_custom_' . $module_id . '_code'], $config['board3_custom_' . $module_id . '_uid'], '');
+				}]]></find>
+				<action type="after-add"><![CDATA[				$map_status = ($config['allow_maps']) ? true : false;
+				if( $map_status ) {
+					$user->add_lang('mods/info_acp_mapbbcode');
+					$template->assign_vars(array(
+						"S_MAPBBCODE" => true,
+						"LAYERS" => $config['mapbb_layers'],
+						"DEFAULT_ZOOM" => $config['mapbb_default_zoom'],
+						"DEFAULT_POS" => $config['mapbb_default_pos'],
+						"VIEW_HEIGHT" => $config['mapbb_view_height'],
+						"EDITOR_HEIGHT" => $config['mapbb_editor_height'],
+						"WINDOW_WIDTH" => $config['mapbb_window_width'],
+						"WINDOW_HEIGHT" => $config['mapbb_window_height'],
+						"OUTER_LINK" => $config['mapbb_outer_link'],
+						"SHARE_SERVER" => $config['mapbb_share_server'],
+						"S_ENABLE_EXTERNAL" => $config['mapbb_enable_external'],
+						"ENABLE_EXTERNAL" => $config['mapbb_enable_external'] ? 'true' : 'false',
+						"STANDARD_SWITCHER" => $config['mapbb_standard_switcher'] ? 'true' : 'false',
+						"EDITOR_WINDOW" => $config['mapbb_editor_window'] ? 'true' : 'false',
+						"ALLOWED_TAGS" => $config['mapbb_allowed_tags']
+					));
+				}]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[					'S_LINKS_ALLOWED'       => true,]]></find>
+				<action type="after-add"><![CDATA[					'S_MAPS_ALLOWED'		=> $map_status,]]></action>
+			</edit>
+		</open>
+		<open src="portal/modules/portal_welcome.php">
+			<edit>
+				<find><![CDATA[					$welcome_message = generate_text_for_edit($portal_config['board3_welcome_message_' . $module_id], $config['board3_welcome_message_uid_' . $module_id], '');
+				}]]></find>
+				<action type="after-add"><![CDATA[				$map_status = ($config['allow_maps']) ? true : false;
+				if( $map_status ) {
+					$user->add_lang('mods/info_acp_mapbbcode');
+					$template->assign_vars(array(
+						"S_MAPBBCODE" => true,
+						"LAYERS" => $config['mapbb_layers'],
+						"DEFAULT_ZOOM" => $config['mapbb_default_zoom'],
+						"DEFAULT_POS" => $config['mapbb_default_pos'],
+						"VIEW_HEIGHT" => $config['mapbb_view_height'],
+						"EDITOR_HEIGHT" => $config['mapbb_editor_height'],
+						"WINDOW_WIDTH" => $config['mapbb_window_width'],
+						"WINDOW_HEIGHT" => $config['mapbb_window_height'],
+						"OUTER_LINK" => $config['mapbb_outer_link'],
+						"SHARE_SERVER" => $config['mapbb_share_server'],
+						"S_ENABLE_EXTERNAL" => $config['mapbb_enable_external'],
+						"ENABLE_EXTERNAL" => $config['mapbb_enable_external'] ? 'true' : 'false',
+						"STANDARD_SWITCHER" => $config['mapbb_standard_switcher'] ? 'true' : 'false',
+						"EDITOR_WINDOW" => $config['mapbb_editor_window'] ? 'true' : 'false',
+						"ALLOWED_TAGS" => $config['mapbb_allowed_tags']
+					));
+				}]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[					'S_LINKS_ALLOWED'       => true,]]></find>
+				<action type="after-add"><![CDATA[					'S_MAPS_ALLOWED'		=> $map_status,]]></action>
+			</edit>
+		</open>
+		<open src="adm/style/portal/acp_portal_custom.html">
+			<edit>
+				<find><![CDATA[<!-- INCLUDE overall_header.html -->]]></find>
+				<action type="after-add"><![CDATA[<!-- IF S_MAPS_ALLOWED -->
+<link rel="stylesheet" href="../mapbbcode/leaflet.css" />
+<link rel="stylesheet" href="../mapbbcode/leaflet.draw.css" />
+<!--[if lte IE 8]>
+	<link rel="stylesheet" href="../mapbbcode/leaflet.ie.css" />
+	<link rel="stylesheet" href="../mapbbcode/leaflet.draw.ie.css" />
+<![endif]-->
+<script src="../mapbbcode/leaflet.js"></script>
+<script src="../mapbbcode/leaflet.draw.js"></script>
+<script src="../mapbbcode/Bing.js"></script>
+<script src="../mapbbcode/mapbbcode.js"></script>
+<script src="../mapbbcode/mapbbcode-config.js"></script>
+<script src="../mapbbcode/language/{LA_MAPBB_LANGUAGE_JS}.js"></script>
+<script language="Javascript" type="text/javascript">
+<!--
+var mapBBcode = new MapBBCode({
+	windowPath: '../mapbbcode/',
+	layers: '{LAYERS}'.split(','),
+	defaultZoom: {DEFAULT_ZOOM}+0,
+	defaultPosition: [{DEFAULT_POS}],
+	fullViewHeight: {VIEW_HEIGHT}+0,
+	editorHeight: {EDITOR_HEIGHT}+0,
+	windowWidth: {WINDOW_WIDTH}+0,
+	windowHeight: {WINDOW_HEIGHT}+0,
+	fullFromStart: true,
+	preferStandardLayerSwitcher: {STANDARD_SWITCHER},
+	outerLinkTemplate: '{OUTER_LINK}',
+	uploadButton: {ENABLE_EXTERNAL},
+	externalEndpoint: '{SHARE_SERVER}',
+	hideInsideClasses: []
+});
+<!-- IF not S_ENABLE_EXTERNAL -->
+mapBBcode.showExternal = function(div, id) {};
+<!-- ENDIF -->
+//-->
+</script>
+<!-- ENDIF -->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		<fieldset>
+			<legend>{L_PORTAL_CUSTOM}</legend>]]></find>
+				<action type="before-add"><![CDATA[		<div id="mapedit"></div>]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		<!-- IF S_BBCODE_FLASH -->]]></find>
+				<action type="before-add"><![CDATA[
+					<!-- IF S_MAPS_ALLOWED -->
+						<input type="button" class="button2" accesskey="m" name="addbbcodemap" value="Map" style="text-decoration: underline; width: 40px" onclick="javascript:{EDITOR_WINDOW} ? mapBBcode.editorWindow(document.getElementById(text_name)) : mapBBcode.editor('mapedit', document.getElementById(text_name));" title="{L_BBCODE_MAP_HELP}" />
+					<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="adm/style/portal/acp_portal_welcome.html">
+			<edit>
+				<find><![CDATA[<!-- INCLUDE overall_header.html -->]]></find>
+				<action type="after-add"><![CDATA[<!-- IF S_MAPS_ALLOWED -->
+<link rel="stylesheet" href="../mapbbcode/leaflet.css" />
+<link rel="stylesheet" href="../mapbbcode/leaflet.draw.css" />
+<!--[if lte IE 8]>
+	<link rel="stylesheet" href="../mapbbcode/leaflet.ie.css" />
+	<link rel="stylesheet" href="../mapbbcode/leaflet.draw.ie.css" />
+<![endif]-->
+<script src="../mapbbcode/leaflet.js"></script>
+<script src="../mapbbcode/leaflet.draw.js"></script>
+<script src="../mapbbcode/Bing.js"></script>
+<script src="../mapbbcode/mapbbcode.js"></script>
+<script src="../mapbbcode/mapbbcode-config.js"></script>
+<script src="../mapbbcode/language/{LA_MAPBB_LANGUAGE_JS}.js"></script>
+<script language="Javascript" type="text/javascript">
+<!--
+var mapBBcode = new MapBBCode({
+	windowPath: '../mapbbcode/',
+	layers: '{LAYERS}'.split(','),
+	defaultZoom: {DEFAULT_ZOOM}+0,
+	defaultPosition: [{DEFAULT_POS}],
+	fullViewHeight: {VIEW_HEIGHT}+0,
+	editorHeight: {EDITOR_HEIGHT}+0,
+	windowWidth: {WINDOW_WIDTH}+0,
+	windowHeight: {WINDOW_HEIGHT}+0,
+	fullFromStart: true,
+	preferStandardLayerSwitcher: {STANDARD_SWITCHER},
+	outerLinkTemplate: '{OUTER_LINK}',
+	uploadButton: {ENABLE_EXTERNAL},
+	externalEndpoint: '{SHARE_SERVER}',
+	hideInsideClasses: []
+});
+<!-- IF not S_ENABLE_EXTERNAL -->
+mapBBcode.showExternal = function(div, id) {};
+<!-- ENDIF -->
+//-->
+</script>
+<!-- ENDIF -->]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		<fieldset>
+			<legend>{L_PORTAL_WELCOME}</legend>]]></find>
+				<action type="before-add"><![CDATA[		<div id="mapedit"></div>]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		<!-- IF S_BBCODE_FLASH -->]]></find>
+				<action type="before-add"><![CDATA[
+					<!-- IF S_MAPS_ALLOWED -->
+						<input type="button" class="button2" accesskey="m" name="addbbcodemap" value="Map" style="text-decoration: underline; width: 40px" onclick="javascript:{EDITOR_WINDOW} ? mapBBcode.editorWindow(document.getElementById(text_name)) : mapBBcode.editor('mapedit', document.getElementById(text_name));" title="{L_BBCODE_MAP_HELP}" />
+					<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+	</action-group>
+</mod>
