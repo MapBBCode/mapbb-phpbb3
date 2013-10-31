@@ -36,25 +36,10 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
 $lang = array_merge($lang, array(
-	// editor
-	'MAPBB_VIEW' => 'View',
-	'MAPBB_EDITOR' => 'Editor',
-	'MAPBB_EDITINWINDOW' => 'Window',
-	'MAPBB_EDITINPANEL' => 'Panel',
-	'MAPBB_VIEWNORMAL' => 'Normal',
-	'MAPBB_VIEWFULL' => 'Full width only',
-	'MAPBB_VIEWTITLE' => 'Adjusting browsing panel',
-	'MAPBB_EDITORTITLE' => 'Adjusting editor panel or window',
-	'MAPBB_EDITINWINDOWTITLE' => 'Editor will be opened in a popup window',
-	'MAPBB_EDITINPANELTITLE' => 'Editor will appear inside a page',
-	'MAPBB_VIEWNORMALTITLE' => 'Map panel will have "fullscreen" button',
-	'MAPBB_VIEWFULLTITLE' => 'Map panel will always have maximum size',
-	'MAPBB_GROWTITLE' => 'Click to grow the panel',
-	'MAPBB_SHRINKTITLE' => 'Click to shrink the panel',
-	'MAPBB_SELECT_LAYER' => 'Select layer',
-	'MAPBB_ADD_LAYER' => 'Add layer',
-	'MAPBB_KEY_NEEDED' => 'This layer needs a developer key',
-	'MAPBB_BING_KEY' => 'This layer needs a developer key (<a href="%s" target="bing">how to get it</a>)',
+	'MAPBB_LANGUAGE_JS' => 'English',
+	'BBCODE_MAP_HELP' => 'Insert a map: [map]latitude,longitude(title); ...[/map]  (alt+m)',
+	'MAPS_ARE_ON' => '[map] is <em>ON</em>',
+	'MAPS_ARE_OFF' => '[map] is <em>OFF</em>',
 
 	'INSTALLER_MAPBBCODE_ADD' => 'Added Map BBCode to the bbcode table',
 	'INSTALLER_MAPBBCODE_REMOVE' => 'Removed Map BBCode from the bbcode table',

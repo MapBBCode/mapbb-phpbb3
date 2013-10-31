@@ -27,7 +27,6 @@
 	<action-group>
 		<copy>
 			<file from="root/language/ru/mods/info_acp_mapbbcode.php" to="language/ru/mods/info_acp_mapbbcode.php"/>
-			<file from="root/language/ru/mods/mapbbcode.php" to="language/ru/mods/mapbbcode.php"/>
 		</copy>
 	</action-group>
 </mod>

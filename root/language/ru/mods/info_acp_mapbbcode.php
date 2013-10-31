@@ -36,25 +36,10 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
 $lang = array_merge($lang, array(
-	// editor
-	'MAPBB_VIEW' => 'Карта',
-	'MAPBB_EDITOR' => 'Редактор',
-	'MAPBB_EDITINWINDOW' => 'В окне',
-	'MAPBB_EDITINPANEL' => 'Панель',
-	'MAPBB_VIEWNORMAL' => 'Панель',
-	'MAPBB_VIEWFULL' => 'Во всю ширину',
-	'MAPBB_VIEWTITLE' => 'Настройка панели просмотра карты',
-	'MAPBB_EDITORTITLE' => 'Настройка редактора карты',
-	'MAPBB_EDITINWINDOWTITLE' => 'Редактор будет открываться в новом окне',
-	'MAPBB_EDITINPANELTITLE' => 'Редактор встроен в страницу правки сообщения',
-	'MAPBB_VIEWNORMALTITLE' => 'Карту можно будет развернуть на всю ширину',
-	'MAPBB_VIEWFULLTITLE' => 'Карта будет всегда развёрнута',
-	'MAPBB_GROWTITLE' => 'Увеличить размер панели',
-	'MAPBB_SHRINKTITLE' => 'Уменьшить размер панели',
-	'MAPBB_SELECT_LAYER' => 'Выберите слой',
-	'MAPBB_ADD_LAYER' => 'Добавить слой',
-	'MAPBB_KEY_NEEDED' => 'Этот слой требует ключ разработчика',
-	'MAPBB_BING_KEY' => 'Этот слой требует ключ разработчика (<a href="%s" target="bing">инструкция по получению</a>)',
+	'MAPBB_LANGUAGE_JS' => 'Russian',
+	'BBCODE_MAP_HELP' => 'Вставить карту: [map]широта,долгота(подпись); ...[/map]  (alt+m)',
+	'MAPS_ARE_ON' => '[map] <em>ВКЛЮЧЁН</em>',
+	'MAPS_ARE_OFF' => '[map] <em>ВЫКЛЮЧЕН</em>',
 
 	'INSTALLER_MAPBBCODE_ADD' => 'Добавление кода Map BBCode в таблицу',
 	'INSTALLER_MAPBBCODE_REMOVE' => 'Удаление кода Map BBCode из таблицы',

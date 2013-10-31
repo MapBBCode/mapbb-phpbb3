@@ -32,7 +32,6 @@
 			<file from="root/includes/acp/info/acp_mapbbcode.php" to="includes/acp/info/acp_mapbbcode.php"/>
 			<file from="root/includes/hooks/hook_mapbbcode.php" to="includes/hooks/hook_mapbbcode.php"/>
 			<file from="root/language/en/mods/info_acp_mapbbcode.php" to="language/en/mods/info_acp_mapbbcode.php"/>
-			<file from="root/language/en/mods/mapbbcode.php" to="language/en/mods/mapbbcode.php"/>
 			<file from="root/mapbbcode/*.*" to="mapbbcode/*.*"/>
 			<file from="root/install_mapbbcode.php" to="install_mapbbcode.php"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
@@ -41,7 +40,7 @@
 			<edit>
 				<find><![CDATA[$url_status		= ($config['allow_post_links']) ? true : false;]]></find>
 				<action type="after-add"><![CDATA[$map_status		= ($config['allow_maps']) ? true : false;
-$user->add_lang('mods/mapbbcode');
+$user->add_lang('mods/info_acp_mapbbcode');
 if ($map_status)
 {
 	define('MAPBBCODE', 1);
@@ -80,7 +79,7 @@ if ($map_status)
 			<edit>
 				<find><![CDATA[	$url_status		= ($config['allow_post_links']) ? true : false;]]></find>
 				<action type="after-add"><![CDATA[	$map_status		= ($config['allow_maps']) ? true : false;
-	$user->add_lang('mods/mapbbcode');
+	$user->add_lang('mods/info_acp_mapbbcode');
 	if ($map_status)
 	{
 		define('MAPBBCODE', 1);
@@ -110,6 +109,7 @@ if ($map_status)
 <script src="mapbbcode/Bing.js"></script>
 <script src="mapbbcode/mapbbcode.js"></script>
 <script src="mapbbcode/mapbbcode-config.js"></script>
+<script src="mapbbcode/language/{LA_MAPBB_LANGUAGE_JS}.js"></script>
 <script language="Javascript" type="text/javascript">
 <!--
 var mapBBcode = new MapBBCode({
@@ -133,45 +133,6 @@ var mapBBcode = new MapBBCode({
 <!-- IF not S_ENABLE_EXTERNAL -->
 mapBBcode.showExternal = function(div, id) {};
 <!-- ENDIF -->
-mapBBcode.setStrings({
-	close: '{LA_MAPBB_CLOSE}',
-	remove: '{LA_MAPBB_REMOVE}',
-	apply: '{LA_MAPBB_APPLY}',
-	cancel: '{LA_MAPBB_CANCEL}',
-	title: '{LA_MAPBB_TITLE}',
-	zoomInTitle: '{LA_MAPBB_ZOOMINTITLE}',
-	zoomOutTitle: '{LA_MAPBB_ZOOMOUTTITLE}',
-	applyTitle: '{LA_MAPBB_APPLYTITLE}',
-	cancelTitle: '{LA_MAPBB_CANCELTITLE}',
-	fullScreenTitle: '{LA_MAPBB_FULLSCREENTITLE}',
-	helpTitle: '{LA_MAPBB_HELPTITLE}',
-	outerTitle: '{LA_MAPBB_OUTERTITLE}',
-	submitWarning: '{LA_MAPBB_SUBMITWARNING}',
-	exportName: '{LA_MAPBB_EXPORT}',
-	exportTitle: '{LA_MAPBB_EXPORTTITLE}',
-	upload: '{LA_MAPBB_UPLOAD}',
-	uploadTitle: '{LA_MAPBB_UPLOADTITLE}',
-	uploading: '{LA_MAPBB_UPLOADING}',
-	uploadError: '{LA_MAPBB_UPLOADERROR}',
-	uploadSuccess: '{LA_MAPBB_UPLOADSUCCESS}',
-	sharedFormHeader: '{LA_MAPBB_SHAREDFORMHEADER}',
-	sharedFormError: '{LA_MAPBB_SHAREDFORMERROR}',
-	sharedFormInvalidCode: '{LA_MAPBB_SHAREDFORMINVALIDCODE}',
-	sharedCodeLoading: '{LA_MAPBB_SHAREDCODELOADING}',
-	sharedCodeError: '{LA_MAPBB_SHAREDCODEERROR}',
-	polylineTitle: '{LA_MAPBB_POLYLINETITLE}',
-	polygonTitle: '{LA_MAPBB_POLYGONTITLE}',
-	markerTitle: '{LA_MAPBB_MARKERTITLE}',
-	drawCancelTitle: '{LA_MAPBB_DRAWCANCELTITLE}',
-	markerTooltip: '{LA_MAPBB_MARKERTOOLTIP}',
-	polylineStartTooltip: '{LA_MAPBB_POLYLINESTARTTOOLTIP}',
-	polylineContinueTooltip: '{LA_MAPBB_POLYLINECONTINUETOOLTIP}',
-	polylineEndTooltip: '{LA_MAPBB_POLYLINEENDTOOLTIP}',
-	polygonStartTooltip: '{LA_MAPBB_POLYGONSTARTTOOLTIP}',
-	polygonContinueTooltip: '{LA_MAPBB_POLYGONCONTINUETOOLTIP}',
-	polygonEndTooltip: '{LA_MAPBB_POLYGONENDTOOLTIP}',
-	helpContents: '{LA_MAPBB_HELPCONTENTS}'.split('@')
-});
 //-->
 </script>
 <!-- ENDIF -->]]></action>
@@ -207,6 +168,7 @@ mapBBcode.setStrings({
 <script src="mapbbcode/Bing.js"></script>
 <script src="mapbbcode/mapbbcode.js"></script>
 <script src="mapbbcode/mapbbcode-config.js"></script>
+<script src="mapbbcode/language/{LA_MAPBB_LANGUAGE_JS}.js"></script>
 <script language="Javascript" type="text/javascript">
 <!--
 var mapBBcode = new MapBBCode({
@@ -228,14 +190,6 @@ var mapBBcode = new MapBBCode({
 <!-- IF not S_ENABLE_EXTERNAL -->
 mapBBcode.showExternal = function(div, id) {};
 <!-- ENDIF -->
-mapBBcode.setStrings({
-	zoomInTitle: '{LA_MAPBB_ZOOMINTITLE}',
-	zoomOutTitle: '{LA_MAPBB_ZOOMOUTTITLE}',
-	fullScreenTitle: '{LA_MAPBB_FULLSCREENTITLE}',
-	outerTitle: '{LA_MAPBB_OUTERTITLE}',
-	sharedCodeLoading: '{LA_MAPBB_SHAREDCODELOADING}',
-	sharedCodeError: '{LA_MAPBB_SHAREDCODEERROR}'
-});
 //-->
 </script>
 <!-- ENDIF -->]]></action>

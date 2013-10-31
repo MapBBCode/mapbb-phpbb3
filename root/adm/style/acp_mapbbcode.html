@@ -6,6 +6,7 @@
 <script src="../mapbbcode/leaflet.js"></script>
 <script src="../mapbbcode/Bing.js"></script>
 <script src="../mapbbcode/mapbbcode-config.js"></script>
+<script src="../mapbbcode/language/{LA_MAPBB_LANGUAGE_JS}.Config.js"></script>
 
 <a name="maincontent"></a>
 
@@ -139,28 +140,6 @@ var config = new MapBBCodeConfig({
 	fullFromStart: isTrue('{ALWAYS_FULL}'),
 //		editorTypeFixed: true, // uncomment if needed
 	editorInWindow: isTrue('{EDITOR_WINDOW}') // set to true or false is needed
-});
-config.setStrings({
-	view: '{L_MAPBB_VIEW}',
-	editor: '{L_MAPBB_EDITOR}',
-	editInWindow: '{L_MAPBB_EDITINWINDOW}',
-	editInPanel: '{L_MAPBB_EDITINPANEL}',
-	viewNormal: '{L_MAPBB_VIEWNORMAL}',
-	viewFull: '{L_MAPBB_VIEWFULL}',
-	viewTitle: '{L_MAPBB_VIEWTITLE}',
-	editorTitle: '{L_MAPBB_EDITORTITLE}',
-	editInWindowTitle: '{L_MAPBB_EDITINWINDOWTITLE}',
-	editInPanelTitle: '{L_MAPBB_EDITINPANELTITLE}',
-	viewNormalTitle: '{L_MAPBB_VIEWNORMALTITLE}',
-	viewFullTitle: '{L_MAPBB_VIEWFULLTITLE}',
-	growTitle: '{L_MAPBB_GROWTITLE}',
-	shrinkTitle: '{L_MAPBB_SHRINKTITLE}',
-	zoomInTitle: '{L_MAPBB_ZOOMINTITLE}',
-	zoomOutTitle: '{L_MAPBB_ZOOMOUTTITLE}',
-	selectLayer: '{L_MAPBB_SELECT_LAYER}',
-	addLayer: '{L_MAPBB_ADD_LAYER}',
-	keyNeeded: '{L_MAPBB_BING_KEY}',
-	keyNeededAlert: '{L_MAPBB_KEY_NEEDED}'
 });
 config.on('show change', function(options) {
 	var f = document.getElementById('acp_mapbbcode');
