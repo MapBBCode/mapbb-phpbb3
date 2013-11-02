@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="mapbbcode/leaflet.css" />
+<link rel="stylesheet" href="mapbbcode/leaflet.draw.css" />
+<!--[if lte IE 8]>
+	<link rel="stylesheet" href="mapbbcode/leaflet.ie.css" />
+	<link rel="stylesheet" href="mapbbcode/leaflet.draw.ie.css" />
+<![endif]-->
+<script src="mapbbcode/leaflet.js"></script>
+<script src="mapbbcode/leaflet.draw.js"></script>
+<script src="mapbbcode/Bing.js"></script>
+<script src="mapbbcode/mapbbcode.js"></script>
+<script src="mapbbcode/mapbbcode-config.js"></script>
+<script src="mapbbcode/language/{LA_MAPBB_LANGUAGE_JS}.js"></script>
+<script language="Javascript" type="text/javascript">
+<!--
+var mapBBcode = new MapBBCode({
+	windowPath: 'mapbbcode/',
+	layers: '{LAYERS}'.split(','),
+	defaultZoom: {DEFAULT_ZOOM}+0,
+	defaultPosition: [{DEFAULT_POS}],
+	viewWidth: {VIEW_WIDTH}+0,
+	viewHeight: {VIEW_HEIGHT}+0,
+	fullViewHeight: {FULL_HEIGHT}+0,
+	editorHeight: {EDITOR_HEIGHT}+0,
+	windowWidth: {WINDOW_WIDTH}+0,
+	windowHeight: {WINDOW_HEIGHT}+0,
+	fullFromStart: {ALWAYS_FULL},
+	preferStandardLayerSwitcher: {STANDARD_SWITCHER},
+	outerLinkTemplate: '{OUTER_LINK}',
+	uploadButton: {ENABLE_EXTERNAL},
+	externalEndpoint: '{SHARE_SERVER}',
+	hideInsideClasses: []
+});
+<!-- IF not S_ENABLE_EXTERNAL -->
+mapBBcode.showExternal = function(div, id) {};
+<!-- ENDIF -->
+//-->
+</script>

@@ -33,6 +33,7 @@
 			<file from="root/includes/acp/info/acp_mapbbcode.php" to="includes/acp/info/acp_mapbbcode.php"/>
 			<file from="root/includes/hooks/hook_mapbbcode.php" to="includes/hooks/hook_mapbbcode.php"/>
 			<file from="root/language/en/mods/info_acp_mapbbcode.php" to="language/en/mods/info_acp_mapbbcode.php"/>
+			<file from="root/template/mapbbcode_scripts.html" to="styles/prosilver/template/mapbbcode_scripts.html"/>
 			<file from="root/mapbbcode/*.*" to="mapbbcode/*.*"/>
 			<file from="root/install_mapbbcode.php" to="install_mapbbcode.php"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>
@@ -95,50 +96,6 @@ if ($map_status)
 				<action type="after-add"><![CDATA[		'S_MAPS_ALLOWED'			=> $map_status,]]></action>
 			</edit>
 		</open>
-		<open src="styles/prosilver/template/overall_header.html">
-			<edit>
-				<find><![CDATA[</head>]]></find>
-				<action type="before-add"><![CDATA[<!-- IF S_MAPBBCODE -->
-<link rel="stylesheet" href="mapbbcode/leaflet.css" />
-<link rel="stylesheet" href="mapbbcode/leaflet.draw.css" />
-<!--[if lte IE 8]>
-	<link rel="stylesheet" href="mapbbcode/leaflet.ie.css" />
-	<link rel="stylesheet" href="mapbbcode/leaflet.draw.ie.css" />
-<![endif]-->
-<script src="mapbbcode/leaflet.js"></script>
-<script src="mapbbcode/leaflet.draw.js"></script>
-<script src="mapbbcode/Bing.js"></script>
-<script src="mapbbcode/mapbbcode.js"></script>
-<script src="mapbbcode/mapbbcode-config.js"></script>
-<script src="mapbbcode/language/{LA_MAPBB_LANGUAGE_JS}.js"></script>
-<script language="Javascript" type="text/javascript">
-<!--
-var mapBBcode = new MapBBCode({
-	windowPath: 'mapbbcode/',
-	layers: '{LAYERS}'.split(','),
-	defaultZoom: {DEFAULT_ZOOM}+0,
-	defaultPosition: [{DEFAULT_POS}],
-	viewWidth: {VIEW_WIDTH}+0,
-	viewHeight: {VIEW_HEIGHT}+0,
-	fullViewHeight: {FULL_HEIGHT}+0,
-	editorHeight: {EDITOR_HEIGHT}+0,
-	windowWidth: {WINDOW_WIDTH}+0,
-	windowHeight: {WINDOW_HEIGHT}+0,
-	fullFromStart: {ALWAYS_FULL},
-	preferStandardLayerSwitcher: {STANDARD_SWITCHER},
-	outerLinkTemplate: '{OUTER_LINK}',
-	uploadButton: {ENABLE_EXTERNAL},
-	externalEndpoint: '{SHARE_SERVER}',
-	hideInsideClasses: []
-});
-<!-- IF not S_ENABLE_EXTERNAL -->
-mapBBcode.showExternal = function(div, id) {};
-<!-- ENDIF -->
-//-->
-</script>
-<!-- ENDIF -->]]></action>
-			</edit>
-		</open>
 		<open src="styles/prosilver/template/posting_buttons.html">
 			<edit>
 				<find><![CDATA[	<!-- IF S_BBCODE_FLASH -->]]></find>
@@ -157,42 +114,19 @@ mapBBcode.showExternal = function(div, id) {};
 				<action type="after-add"><![CDATA[			{MAP_STATUS}<br />]]></action>
 			</edit>
 		</open>
+		<open src="styles/prosilver/template/overall_header.html">
+			<edit>
+				<find><![CDATA[</head>]]></find>
+				<action type="before-add"><![CDATA[<!-- IF S_MAPBBCODE -->
+<!-- INCLUDE mapbbcode_scripts.html -->
+<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
 		<open src="styles/prosilver/template/simple_header.html">
 			<edit>
 				<find><![CDATA[</head>]]></find>
 				<action type="before-add"><![CDATA[<!-- IF S_MAPBBCODE -->
-<link rel="stylesheet" href="mapbbcode/leaflet.css" />
-<!--[if lte IE 8]>
-	<link rel="stylesheet" href="mapbbcode/leaflet.ie.css" />
-<![endif]-->
-<script src="mapbbcode/leaflet.js"></script>
-<script src="mapbbcode/Bing.js"></script>
-<script src="mapbbcode/mapbbcode.js"></script>
-<script src="mapbbcode/mapbbcode-config.js"></script>
-<script src="mapbbcode/language/{LA_MAPBB_LANGUAGE_JS}.js"></script>
-<script language="Javascript" type="text/javascript">
-<!--
-var mapBBcode = new MapBBCode({
-	layers: '{LAYERS}'.split(','),
-	defaultZoom: {DEFAULT_ZOOM}+0,
-	defaultPosition: [{DEFAULT_POS}],
-	viewWidth: {VIEW_WIDTH}+0,
-	viewHeight: {VIEW_HEIGHT}+0,
-	fullViewHeight: {FULL_HEIGHT}+0,
-	editorHeight: {EDITOR_HEIGHT}+0,
-	windowWidth: {WINDOW_WIDTH}+0,
-	windowHeight: {WINDOW_HEIGHT}+0,
-	fullFromStart: {ALWAYS_FULL},
-	preferStandardLayerSwitcher: {STANDARD_SWITCHER},
-	outerLinkTemplate: '{OUTER_LINK}',
-	externalEndpoint: '{SHARE_SERVER}',
-	hideInsideClasses: []
-});
-<!-- IF not S_ENABLE_EXTERNAL -->
-mapBBcode.showExternal = function(div, id) {};
-<!-- ENDIF -->
-//-->
-</script>
+<!-- INCLUDE mapbbcode_scripts.html -->
 <!-- ENDIF -->]]></action>
 			</edit>
 		</open>
