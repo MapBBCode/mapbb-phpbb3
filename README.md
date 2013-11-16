@@ -8,7 +8,7 @@ by other MODs.
 ## Installation
 
 1. Install [AutoMOD](https://www.phpbb.com/customise/db/official_tool/automod/) (there are instructions in FAQ).
-2. Log in to your forum as administrator, open "AUTOMOD" tab and upload `mapbbcode_mod.zip` with the field at the bottom.
+2. Log in to your forum as administrator, open "AUTOMOD" tab and upload `mapbbcode_mod.zip` with the field at the bottom. You can get the latest package [here](https://github.com/MapBBCode/mapbb-phpbb3/raw/master/dist/mapbbcode_mod.zip).
 3. Disregard version warning if there is one, and press "Install". Then press buttons you're asked to. You might be asked to upload files yourself.
 4. After installing, open `%FORUM%/install_mapbbcode/php`. Press "Submit", "OK" and after everything's green, return to the forum.
 5. Check that [map] bbcode works, and there is an administration panel in "Messages" tab.
