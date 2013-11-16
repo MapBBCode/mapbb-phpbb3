@@ -21,7 +21,7 @@
 			<target-version>3.0.12</target-version>
 		</installation>
 		<link-group>
-                    <link type="parent" href="../install.xml" lang="en">Main MapBBCode MODX</link>
+			<link type="parent" href="../install.xml" lang="en">Main MapBBCode MODX</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -30,10 +30,9 @@
 		</copy>
 		<open src="styles/subsilver2/template/posting_body.html">
 			<edit>
-				<find><![CDATA[		</script>
-
-		<table width="100%" cellspacing="0" cellpadding="0" border="0">]]></find>
-				<action type="after-add"><![CDATA[                <div id="mapedit"></div>]]></action>
+				<find><![CDATA[		<table width="100%" cellspacing="0" cellpadding="0" border="0">
+		<!-- INCLUDE posting_buttons.html -->]]></find>
+				<action type="before-add"><![CDATA[		<div id="mapedit"></div>]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[			<td class="gensmall">{URL_STATUS}</td>]]></find>
