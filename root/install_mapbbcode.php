@@ -88,6 +88,9 @@ $versions = array(
 		),
 
 		'custom' => 'mapbbcode_bbcode',
+	),
+
+	'1.0.0' => array(
 		'cache_purge' => '',
 	),
 );

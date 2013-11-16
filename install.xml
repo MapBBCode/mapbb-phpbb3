@@ -6,6 +6,7 @@
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
 		<title lang="en"><![CDATA[MapBBCode]]></title>
+		<author-notes>Works on phpBB 3.0.8 and newer, disregard the version warning.</author-notes>
 		<github><![CDATA[https://github.com/Zverik/mapbb-phpbb3]]></github>
 		<author-group>
 			<author>
@@ -14,16 +15,33 @@
 				<email><![CDATA[zverik@textual.ru]]></email>
 			</author>
 		</author-group>
-		<mod-version>0.9.0</mod-version>
+		<mod-version>1.0.0</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>600</time>
 			<target-version>3.0.12</target-version>
 		</installation>
+		<history>
+			<entry>
+				<date>2013-11-16</date>
+				<rev-version>1.0.0</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Update MapBBCode to 1.1.1]]></change>
+				</changelog>
+			</entry>
+			<entry>
+				<date>2013-11-01</date>
+				<rev-version>0.9.0</rev-version>
+					<change><![CDATA[Beta version, MapBBCode 1.0.0]]></change>
+				<changelog lang="en">
+				</changelog>
+			</entry>
+		</history>
 		<link-group>
 			<link type="language" href="contrib/ru.xml" lang="en">Russian translation</link>
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Modifications for subsilver2 theme</link>
 			<link type="contrib" href="contrib/board3.xml" lang="en">Modifications for Board3 Portal</link>
+			<link type="contrib" href="contrib/upgrade_0.9.0_to_1.0.0.xml" lang="en">Upgrade from version 0.9.0</link>
 		</link-group>
 	</header>
 	<action-group>

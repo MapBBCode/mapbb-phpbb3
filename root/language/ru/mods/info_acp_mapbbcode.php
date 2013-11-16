@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* mapbbcode [English]
+* mapbbcode [Russian]
 *
 * @package language
 * @version $Id$
