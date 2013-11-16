@@ -24,8 +24,8 @@ by other MODs.
 
 If you want to use Google Maps or other proprietary imagery and maps provider, you'll have to modify two or more files:
 
-* `adm/styles/acp_mapbbcode.html`
-* `styles/prosilver/templates/mapbbcode_scripts.html` (and the same file for other templates)
+* `adm/style/acp_mapbbcode.html`
+* `styles/prosilver/template/mapbbcode_scripts.html` (and the same file for other templates)
 
 Find `Bing.js` script there and add a relevant script for your provider. There are some supported out of the box: for example, Google layers can be added by appending two lines after Bing line (update js path according to one used in Bing line):
 
