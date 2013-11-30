@@ -91,6 +91,7 @@ class acp_mapbbcode
 			trigger_error($user->lang['CONFIG_UPDATED'] . adm_back_link($this->u_action));
 		}
 
+		include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
 		$template->assign_vars(array(
 			'U_ACTION'			=> $this->u_action,
 			'MAPS_ENABLE'		=> $maps_enable,
@@ -111,6 +112,7 @@ class acp_mapbbcode
 			'OUTER_LINK'		=> $outer_link,
 			'ALLOWED_TAGS'		=> $allowed_tags,
 			'SHARE_SERVER'		=> $share_server,
+			'MAPBBCODE_ADDONS'	=> get_mapbbcode_addons('../mapbbcode'),
 		));
 	}
 }

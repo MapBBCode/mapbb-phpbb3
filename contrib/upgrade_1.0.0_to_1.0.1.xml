@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
+	<header>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[Upgrade 1.0.0 to 1.0.1]]></title>
+		<github><![CDATA[https://github.com/Zverik/mapbb-phpbb3]]></github>
+		<author-group>
+			<author>
+				<realname><![CDATA[Ilya Zverev]]></realname>
+				<username><![CDATA[Zverik]]></username>
+				<email><![CDATA[zverik@textual.ru]]></email>
+			</author>
+		</author-group>
+		<mod-version>1.0.1</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>60</time>
+			<target-version>3.0.12</target-version>
+		</installation>
+		<link-group>
+			<link type="parent" href="../install.xml" lang="en">Main MapBBCode MODX</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/includes/functions_mapbbcode.php" to="includes/functions_mapbbcode.php"/>
+			<file from="root/mapbbcode/*.*" to="mapbbcode/*.*"/>
+			<file from="root/install_mapbbcode.php" to="install_mapbbcode.php"/>
+		</copy>
+		<open src="includes/acp/info/acp_mapbbcode.php">
+			<edit>
+				<find><![CDATA[			'version'	=> '1.0.0',]]></find>
+				<action type="replace-with"><![CDATA[			'version'	=> '1.0.1',]]></action>
+			</edit>
+		</open>
+		<open src="includes/acp/acp_mapbbcode.php">
+			<edit>
+				<find><![CDATA[		$template->assign_vars(array(]]></find>
+				<action type="before-add"><![CDATA[		include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
+]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[			'SHARE_SERVER'		=> $share_server,]]></find>
+				<action type="after-add"><![CDATA[
+			'MAPBBCODE_ADDONS'	=> get_mapbbcode_addons('../mapbbcode'),]]></action>
+			</edit>
+		</open>
+		<open src="includes/hooks/hook_mapbbcode.php">
+			<edit>
+				<find><![CDATA[	global $user, $config, $template;]]></find>
+				<action type="after-add"><![CDATA[
+	global $phpbb_root_path, $phpEx;]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[		$user->add_lang('mods/info_acp_mapbbcode');]]></find>
+				<action type="before-add"><![CDATA[		include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
+]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[			"S_MAPBBCODE" => true,]]></find>
+				<action type="after-add"><![CDATA[
+			"MAPBBCODE_ADDONS" => get_mapbbcode_addons('mapbbcode'),]]></action>
+			</edit>
+		</open>
+		<open src="adm/style/acp_mapbbcode.html">
+			<edit>
+				<find><![CDATA[<script src="../mapbbcode/proprietary/Bing.js"></script>]]></find>
+				<action type="after-add"><![CDATA[
+{MAPBBCODE_ADDONS}]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/mapbbcode_scripts.html">
+			<edit>
+				<find><![CDATA[<script src="mapbbcode/proprietary/Bing.js"></script>]]></find>
+				<action type="after-add"><![CDATA[
+{MAPBBCODE_ADDONS}]]></action>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/mapbbcode_scripts.html">
+			<edit>
+				<find><![CDATA[<script src="mapbbcode/proprietary/Bing.js"></script>]]></find>
+				<action type="after-add"><![CDATA[
+{MAPBBCODE_ADDONS}]]></action>
+			</edit>
+		</open>
+		<php-installer><![CDATA[install_mapbbcode.php]]></php-installer>
+	</action-group>
+</mod>

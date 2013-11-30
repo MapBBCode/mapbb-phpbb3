@@ -15,13 +15,21 @@
 				<email><![CDATA[zverik@textual.ru]]></email>
 			</author>
 		</author-group>
-		<mod-version>1.0.0</mod-version>
+		<mod-version>1.0.1</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>600</time>
 			<target-version>3.0.12</target-version>
 		</installation>
 		<history>
+			<entry>
+				<date>2013-11-30</date>
+				<rev-version>1.0.1</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Update MapBBCode to 1.1.2]]></change>
+					<change><![CDATA[Easier to include add-ons]]></change>
+				</changelog>
+			</entry>
 			<entry>
 				<date>2013-11-16</date>
 				<rev-version>1.0.0</rev-version>
@@ -41,7 +49,8 @@
 			<link type="language" href="contrib/ru.xml" lang="en">Russian translation</link>
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Modifications for subsilver2 theme</link>
 			<link type="contrib" href="contrib/board3.xml" lang="en">Modifications for Board3 Portal</link>
-			<link type="contrib" href="contrib/upgrade_0.9.0_to_1.0.0.xml" lang="en">Upgrade from version 0.9.0</link>
+			<link type="contrib" href="contrib/upgrade_0.9.0_to_1.0.1.xml" lang="en">Upgrade from version 0.9.0</link>
+			<link type="contrib" href="contrib/upgrade_1.0.0_to_1.0.1.xml" lang="en">Upgrade from version 1.0.0</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -50,6 +59,7 @@
 			<file from="root/includes/acp/acp_mapbbcode.php" to="includes/acp/acp_mapbbcode.php"/>
 			<file from="root/includes/acp/info/acp_mapbbcode.php" to="includes/acp/info/acp_mapbbcode.php"/>
 			<file from="root/includes/hooks/hook_mapbbcode.php" to="includes/hooks/hook_mapbbcode.php"/>
+			<file from="root/includes/functions_mapbbcode.php" to="includes/functions_mapbbcode.php"/>
 			<file from="root/language/en/mods/info_acp_mapbbcode.php" to="language/en/mods/info_acp_mapbbcode.php"/>
 			<file from="root/template/mapbbcode_scripts.html" to="styles/prosilver/template/mapbbcode_scripts.html"/>
 			<file from="root/mapbbcode/*.*" to="mapbbcode/*.*"/>

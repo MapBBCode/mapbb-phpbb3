@@ -16,21 +16,18 @@ by other MODs.
 ## Upgrading
 
 1. Open AutoMOD control panel and upload fresh `mapbbcode_mod.zip`.
-2. Find it in the list, click "Details", check version (N.M.P) and find "Upgrade from version N.M.P" contrib module.
+2. Find it in the list, click "Details", check version (N.M.P) and find "Upgrade N.M.P to (latest)" contrib module.
 3. Install it.
 4. If needed, run `install_mapbbcode.php` (see above), or just purge the cache (it's an option on "General" tab).
 
-## Proprietary Layers
+## Add-ons and proprietary Layers
 
-If you want to use Google Maps or other proprietary imagery and maps provider, you'll have to modify two or more files:
+If you want to use plugins or proprietary layers, like Google's, you'll have to modify two files:
 
-* `adm/style/acp_mapbbcode.html`
-* `styles/prosilver/template/mapbbcode_scripts.html` (and the same file for other templates)
+* `includes/functions_mapbbcode.php`
+* `mapbbcode/mapbbcode_window.html`
 
-Find `Bing.js` script there and add a relevant script for your provider. There are some supported out of the box: for example, Google layers can be added by appending two lines after Bing line (update js path according to one used in Bing line):
-
-    <script src="http://maps.google.com/maps/api/js?v=3&sensor=false"></script>
-    <script src="mapbbcode/proprietary/Google.js"></script>
+Just add needed scripts there. There are examples in `functions_mapbbcode.php`.
 
 ## License
 

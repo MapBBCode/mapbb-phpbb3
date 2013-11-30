@@ -32,9 +32,11 @@
 				}]]></find>
 				<action type="after-add"><![CDATA[				$map_status = ($config['allow_maps']) ? true : false;
 				if( $map_status ) {
+					include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
 					$user->add_lang('mods/info_acp_mapbbcode');
 					$template->assign_vars(array(
 						"S_MAPBBCODE" => true,
+						"MAPBBCODE_ADDONS" => get_mapbbcode_addons('../mapbbcode'),
 						"LAYERS" => $config['mapbb_layers'],
 						"DEFAULT_ZOOM" => $config['mapbb_default_zoom'],
 						"DEFAULT_POS" => $config['mapbb_default_pos'],
@@ -63,9 +65,11 @@
 				}]]></find>
 				<action type="after-add"><![CDATA[				$map_status = ($config['allow_maps']) ? true : false;
 				if( $map_status ) {
+					include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
 					$user->add_lang('mods/info_acp_mapbbcode');
 					$template->assign_vars(array(
 						"S_MAPBBCODE" => true,
+						"MAPBBCODE_ADDONS" => get_mapbbcode_addons('../mapbbcode'),
 						"LAYERS" => $config['mapbb_layers'],
 						"DEFAULT_ZOOM" => $config['mapbb_default_zoom'],
 						"DEFAULT_POS" => $config['mapbb_default_pos'],
@@ -104,6 +108,7 @@
 <script src="../mapbbcode/mapbbcode-config.js"></script>
 <script src="../mapbbcode/lang/{LA_MAPBB_LANGUAGE_JS}.js"></script>
 <script src="../mapbbcode/proprietary/Bing.js"></script>
+{MAPBBCODE_ADDONS}
 <script language="Javascript" type="text/javascript">
 <!--
 var mapBBcode = new MapBBCode({
@@ -158,6 +163,7 @@ mapBBcode.showExternal = function(div, id) {};
 <script src="../mapbbcode/mapbbcode-config.js"></script>
 <script src="../mapbbcode/lang/{LA_MAPBB_LANGUAGE_JS}.js"></script>
 <script src="../mapbbcode/proprietary/Bing.js"></script>
+{MAPBBCODE_ADDONS}
 <script language="Javascript" type="text/javascript">
 <!--
 var mapBBcode = new MapBBCode({

@@ -91,6 +91,9 @@ $versions = array(
 	),
 
 	'1.0.0' => array(
+	),
+
+	'1.0.1' => array(
 		'cache_purge' => '',
 	),
 );
