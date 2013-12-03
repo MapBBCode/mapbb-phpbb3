@@ -61,7 +61,7 @@
 			<file from="root/includes/hooks/hook_mapbbcode.php" to="includes/hooks/hook_mapbbcode.php"/>
 			<file from="root/includes/functions_mapbbcode.php" to="includes/functions_mapbbcode.php"/>
 			<file from="root/language/en/mods/info_acp_mapbbcode.php" to="language/en/mods/info_acp_mapbbcode.php"/>
-			<file from="root/template/mapbbcode_scripts.html" to="styles/prosilver/template/mapbbcode_scripts.html"/>
+			<file from="root/styles/prosilver/template/mapbbcode_scripts.html" to="styles/prosilver/template/mapbbcode_scripts.html"/>
 			<file from="root/mapbbcode/*.*" to="mapbbcode/*.*"/>
 			<file from="root/install_mapbbcode.php" to="install_mapbbcode.php"/>
 			<file from="root/umil/*.*" to="umil/*.*"/>

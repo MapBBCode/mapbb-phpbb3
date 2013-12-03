@@ -26,7 +26,7 @@
 	</header>
 	<action-group>
 		<copy>
-			<file from="root/template/mapbbcode_scripts.html" to="styles/subsilver2/template/mapbbcode_scripts.html"/>
+			<file from="root/styles/prosilver/template/mapbbcode_scripts.html" to="styles/subsilver2/template/mapbbcode_scripts.html"/>
 		</copy>
 		<open src="styles/subsilver2/template/posting_body.html">
 			<edit>
