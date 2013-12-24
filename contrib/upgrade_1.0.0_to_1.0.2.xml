@@ -5,7 +5,7 @@
 <mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://www.phpbb.com/mods/xml/modx-1.2.6.xsd">
 	<header>
 		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
-		<title lang="en"><![CDATA[Upgrade 0.9.0 to 1.0.1]]></title>
+		<title lang="en"><![CDATA[Upgrade 1.0.0 to 1.0.2]]></title>
 		<github><![CDATA[https://github.com/Zverik/mapbb-phpbb3]]></github>
 		<author-group>
 			<author>
@@ -14,7 +14,7 @@
 				<email><![CDATA[zverik@textual.ru]]></email>
 			</author>
 		</author-group>
-		<mod-version>1.0.1</mod-version>
+		<mod-version>1.0.2</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>60</time>
@@ -32,15 +32,21 @@
 		</copy>
 		<open src="includes/acp/info/acp_mapbbcode.php">
 			<edit>
-				<find><![CDATA[			'version'	=> '0.9.0',]]></find>
-				<action type="replace-with"><![CDATA[			'version'	=> '1.0.1',]]></action>
+				<find><![CDATA[			'version'	=> '1.0.0',]]></find>
+				<action type="replace-with"><![CDATA[			'version'	=> '1.0.2',]]></action>
 			</edit>
 		</open>
 		<open src="includes/acp/acp_mapbbcode.php">
 			<edit>
 				<find><![CDATA[		$template->assign_vars(array(]]></find>
-				<action type="before-add"><![CDATA[		include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
-]]></action>
+				<action type="before-add"><![CDATA[		if( !function_exists('get_mapbbcode_addons') )
+		{
+			include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
+		}]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[			'LAYERS'			=> $layers,]]></find>
+				<action type="replace-with"><![CDATA[			'LAYERS'			=> str_replace("'", "\\'", $layers),]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[			'SHARE_SERVER'		=> $share_server,]]></find>
@@ -56,8 +62,14 @@
 			</edit>
 			<edit>
 				<find><![CDATA[		$user->add_lang('mods/info_acp_mapbbcode');]]></find>
-				<action type="before-add"><![CDATA[		include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
-]]></action>
+				<action type="before-add"><![CDATA[		if( !function_exists('get_mapbbcode_addons') )
+		{
+			include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
+		}]]></action>
+			</edit>
+			<edit>
+				<find><![CDATA[			"LAYERS" => $config['mapbb_layers'],]]></find>
+				<action type="replace-with"><![CDATA[			"LAYERS" => str_replace("'", "\\'", $config['mapbb_layers']),]]></action>
 			</edit>
 			<edit>
 				<find><![CDATA[			"S_MAPBBCODE" => true,]]></find>
@@ -67,38 +79,68 @@
 		</open>
 		<open src="adm/style/acp_mapbbcode.html">
 			<edit>
-				<find><![CDATA[<script src="../mapbbcode/Bing.js"></script>
+				<find><![CDATA[<!--[if lte IE 8]>
+	<link rel="stylesheet" href="../mapbbcode/leaflet.ie.css" />
+<![endif]-->
+<script src="../mapbbcode/leaflet.js"></script>
 <script src="../mapbbcode/mapbbcode-config.js"></script>
-<script src="../mapbbcode/language/{LA_MAPBB_LANGUAGE_JS}.Config.js"></script>]]></find>
-				<action type="replace-with"><![CDATA[<script src="../mapbbcode/mapbbcode-config.js"></script>
 <script src="../mapbbcode/lang/{LA_MAPBB_LANGUAGE_JS}.Config.js"></script>
-<script src="../mapbbcode/proprietary/Bing.js"></script>
+<script src="../mapbbcode/proprietary/Bing.js"></script>]]></find>
+				<action type="replace-with"><![CDATA[<script src="../mapbbcode/leaflet.js"></script>
+<script src="../mapbbcode/mapbbcode-config.js"></script>
+<script src="../mapbbcode/lang/{LA_MAPBB_LANGUAGE_JS}.config.js"></script>
 {MAPBBCODE_ADDONS}]]></action>
+			</edit>
+		</open>
+		<open src="language/en/mods/info_acp_mapbbcode.php">
+			<edit>
+				<find><![CDATA[	'MAPBB_LANGUAGE_JS' => 'English',]]></find>
+				<action type="replace-with"><![CDATA[	'MAPBB_LANGUAGE_JS' => 'en',]]></action>
+			</edit>
+		</open>
+		<open src="language/ru/mods/info_acp_mapbbcode.php">
+			<edit>
+				<find><![CDATA[	'MAPBB_LANGUAGE_JS' => 'Russian',]]></find>
+				<action type="replace-with"><![CDATA[	'MAPBB_LANGUAGE_JS' => 'ru',]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/template/mapbbcode_scripts.html">
 			<edit>
-				<find><![CDATA[<script src="mapbbcode/Bing.js"></script>
+				<find><![CDATA[<!--[if lte IE 8]>
+	<link rel="stylesheet" href="mapbbcode/leaflet.ie.css" />
+	<link rel="stylesheet" href="mapbbcode/leaflet.draw.ie.css" />
+<![endif]-->
+<script src="mapbbcode/leaflet.js"></script>
+<script src="mapbbcode/leaflet.draw.js"></script>
 <script src="mapbbcode/mapbbcode.js"></script>
 <script src="mapbbcode/mapbbcode-config.js"></script>
-<script src="mapbbcode/language/{LA_MAPBB_LANGUAGE_JS}.js"></script>]]></find>
-				<action type="replace-with"><![CDATA[<script src="mapbbcode/mapbbcode.js"></script>
-<script src="mapbbcode/mapbbcode-config.js"></script>
 <script src="mapbbcode/lang/{LA_MAPBB_LANGUAGE_JS}.js"></script>
-<script src="mapbbcode/proprietary/Bing.js"></script>
+<script src="mapbbcode/proprietary/Bing.js"></script>]]></find>
+				<action type="replace-with"><![CDATA[<script src="mapbbcode/leaflet.js"></script>
+<script src="mapbbcode/leaflet.draw.js"></script>
+<script src="mapbbcode/mapbbcode.js"></script>
+<script src="mapbbcode/LayerList.js"></script>
+<script src="mapbbcode/lang/{LA_MAPBB_LANGUAGE_JS}.js"></script>
 {MAPBBCODE_ADDONS}]]></action>
 			</edit>
 		</open>
 		<open src="styles/subsilver2/template/mapbbcode_scripts.html">
 			<edit>
-				<find><![CDATA[<script src="mapbbcode/Bing.js"></script>
+				<find><![CDATA[<!--[if lte IE 8]>
+	<link rel="stylesheet" href="mapbbcode/leaflet.ie.css" />
+	<link rel="stylesheet" href="mapbbcode/leaflet.draw.ie.css" />
+<![endif]-->
+<script src="mapbbcode/leaflet.js"></script>
+<script src="mapbbcode/leaflet.draw.js"></script>
 <script src="mapbbcode/mapbbcode.js"></script>
 <script src="mapbbcode/mapbbcode-config.js"></script>
-<script src="mapbbcode/language/{LA_MAPBB_LANGUAGE_JS}.js"></script>]]></find>
-				<action type="replace-with"><![CDATA[<script src="mapbbcode/mapbbcode.js"></script>
-<script src="mapbbcode/mapbbcode-config.js"></script>
 <script src="mapbbcode/lang/{LA_MAPBB_LANGUAGE_JS}.js"></script>
-<script src="mapbbcode/proprietary/Bing.js"></script>
+<script src="mapbbcode/proprietary/Bing.js"></script>]]></find>
+				<action type="replace-with"><![CDATA[<script src="mapbbcode/leaflet.js"></script>
+<script src="mapbbcode/leaflet.draw.js"></script>
+<script src="mapbbcode/mapbbcode.js"></script>
+<script src="mapbbcode/LayerList.js"></script>
+<script src="mapbbcode/lang/{LA_MAPBB_LANGUAGE_JS}.js"></script>
 {MAPBBCODE_ADDONS}]]></action>
 			</edit>
 		</open>

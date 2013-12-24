@@ -15,13 +15,21 @@
 				<email><![CDATA[zverik@textual.ru]]></email>
 			</author>
 		</author-group>
-		<mod-version>1.0.1</mod-version>
+		<mod-version>1.0.2</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>600</time>
 			<target-version>3.0.12</target-version>
 		</installation>
 		<history>
+			<entry>
+				<date>2013-12-23</date>
+				<rev-version>1.0.2</rev-version>
+				<changelog lang="en">
+					<change><![CDATA[Update MapBBCode to 1.2.0]]></change>
+					<change><![CDATA[Fix bug with apostrophes in layer names]]></change>
+				</changelog>
+			</entry>
 			<entry>
 				<date>2013-11-30</date>
 				<rev-version>1.0.1</rev-version>
@@ -49,8 +57,9 @@
 			<link type="language" href="contrib/ru.xml" lang="en">Russian translation</link>
 			<link type="template" href="contrib/subsilver2.xml" lang="en">Modifications for subsilver2 theme</link>
 			<link type="contrib" href="contrib/board3.xml" lang="en">Modifications for Board3 Portal</link>
-			<link type="contrib" href="contrib/upgrade_0.9.0_to_1.0.1.xml" lang="en">Upgrade from version 0.9.0</link>
-			<link type="contrib" href="contrib/upgrade_1.0.0_to_1.0.1.xml" lang="en">Upgrade from version 1.0.0</link>
+			<link type="contrib" href="contrib/upgrade_0.9.0_to_1.0.2.xml" lang="en">Upgrade from version 0.9.0</link>
+			<link type="contrib" href="contrib/upgrade_1.0.0_to_1.0.2.xml" lang="en">Upgrade from version 1.0.0</link>
+			<link type="contrib" href="contrib/upgrade_1.0.1_to_1.0.2.xml" lang="en">Upgrade from version 1.0.1</link>
 		</link-group>
 	</header>
 	<action-group>
@@ -159,10 +168,13 @@ if ($map_status)
 			</edit>
 		</open>
 		<php-installer><![CDATA[install_mapbbcode.php]]></php-installer>
-		<diy-instructions lang="en"><![CDATA[Once all the files have been modified and uploaded to your site, point your browser to the "install_modbbcode.php" script
+		<diy-instructions lang="en"><![CDATA[Once all the files have been modified and uploaded to your site, point your browser to the "install_mapbbcode.php" script
 (or click the highlighted link above if you are using AutoMOD) and follow the instructions. Once that is complete,
 you can delete the "install_mapbbcode.php" script.
 
 You can configure MapBBCode settings in the ACP under the "POSTING" tab.]]></diy-instructions>
+		<diy-instructions lang="ru"><![CDATA[Когда все файлы будут отредактированы и загружены на ваш сайт, откройте страницу «install_mapbbcode.php» (или щёлкните ссылку выше, если пользуетесь AutoMOD) и следуйте указаниям. После завершения процедуры файл «install_mapbbcode.php» можно удалить.
+
+Настройки плагина MapBBCode можно изменить в панели администрирования во вкладке «Сообщения».]]></diy-instructions>
 	</action-group>
 </mod>

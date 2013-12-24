@@ -37,7 +37,7 @@
 					$template->assign_vars(array(
 						"S_MAPBBCODE" => true,
 						"MAPBBCODE_ADDONS" => get_mapbbcode_addons('../mapbbcode'),
-						"LAYERS" => $config['mapbb_layers'],
+						"LAYERS" => str_replace("'", "\\'", $config['mapbb_layers']),
 						"DEFAULT_ZOOM" => $config['mapbb_default_zoom'],
 						"DEFAULT_POS" => $config['mapbb_default_pos'],
 						"VIEW_HEIGHT" => $config['mapbb_view_height'],
@@ -70,7 +70,7 @@
 					$template->assign_vars(array(
 						"S_MAPBBCODE" => true,
 						"MAPBBCODE_ADDONS" => get_mapbbcode_addons('../mapbbcode'),
-						"LAYERS" => $config['mapbb_layers'],
+						"LAYERS" => str_replace("'", "\\'", $config['mapbb_layers']),
 						"DEFAULT_ZOOM" => $config['mapbb_default_zoom'],
 						"DEFAULT_POS" => $config['mapbb_default_pos'],
 						"VIEW_HEIGHT" => $config['mapbb_view_height'],
@@ -98,16 +98,11 @@
 				<action type="after-add"><![CDATA[<!-- IF S_MAPS_ALLOWED -->
 <link rel="stylesheet" href="../mapbbcode/leaflet.css" />
 <link rel="stylesheet" href="../mapbbcode/leaflet.draw.css" />
-<!--[if lte IE 8]>
-	<link rel="stylesheet" href="../mapbbcode/leaflet.ie.css" />
-	<link rel="stylesheet" href="../mapbbcode/leaflet.draw.ie.css" />
-<![endif]-->
 <script src="../mapbbcode/leaflet.js"></script>
 <script src="../mapbbcode/leaflet.draw.js"></script>
 <script src="../mapbbcode/mapbbcode.js"></script>
-<script src="../mapbbcode/mapbbcode-config.js"></script>
+<script src="../mapbbcode/LayerList.js"></script>
 <script src="../mapbbcode/lang/{LA_MAPBB_LANGUAGE_JS}.js"></script>
-<script src="../mapbbcode/proprietary/Bing.js"></script>
 {MAPBBCODE_ADDONS}
 <script language="Javascript" type="text/javascript">
 <!--
@@ -153,16 +148,11 @@ mapBBcode.showExternal = function(div, id) {};
 				<action type="after-add"><![CDATA[<!-- IF S_MAPS_ALLOWED -->
 <link rel="stylesheet" href="../mapbbcode/leaflet.css" />
 <link rel="stylesheet" href="../mapbbcode/leaflet.draw.css" />
-<!--[if lte IE 8]>
-	<link rel="stylesheet" href="../mapbbcode/leaflet.ie.css" />
-	<link rel="stylesheet" href="../mapbbcode/leaflet.draw.ie.css" />
-<![endif]-->
 <script src="../mapbbcode/leaflet.js"></script>
 <script src="../mapbbcode/leaflet.draw.js"></script>
 <script src="../mapbbcode/mapbbcode.js"></script>
-<script src="../mapbbcode/mapbbcode-config.js"></script>
+<script src="../mapbbcode/LayerList.js"></script>
 <script src="../mapbbcode/lang/{LA_MAPBB_LANGUAGE_JS}.js"></script>
-<script src="../mapbbcode/proprietary/Bing.js"></script>
 {MAPBBCODE_ADDONS}
 <script language="Javascript" type="text/javascript">
 <!--

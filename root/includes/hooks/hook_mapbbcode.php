@@ -16,13 +16,16 @@ function add_mapbbcode_variables(&$hook, $handle, $include_once, $tpl = false)
 	global $phpbb_root_path, $phpEx;
 
 	if (defined('MAPBBCODE') && $config['allow_maps']) {
-		include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
+		if( !function_exists('get_mapbbcode_addons') )
+		{
+			include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
+		}
 		$user->add_lang('mods/info_acp_mapbbcode');
 		$inportal = defined('IN_PORTAL'); // board3
 		$vars = array(
 			"S_MAPBBCODE" => true,
 			"MAPBBCODE_ADDONS" => get_mapbbcode_addons('mapbbcode'),
-			"LAYERS" => $config['mapbb_layers'],
+			"LAYERS" => str_replace("'", "\\'", $config['mapbb_layers']),
 			"DEFAULT_ZOOM" => $config['mapbb_default_zoom'],
 			"DEFAULT_POS" => $config['mapbb_default_pos'],
 			"VIEW_WIDTH" => $config['mapbb_view_width'],

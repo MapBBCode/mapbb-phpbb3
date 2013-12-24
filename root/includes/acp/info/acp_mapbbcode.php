@@ -18,7 +18,7 @@ class acp_mapbbcode_info
 		return array(
 			'filename'	=> 'acp_mapbbcode',
 			'title'		=> 'ACP_MAPBBCODE_SETTINGS',
-			'version'	=> '1.0.1',
+			'version'	=> '1.0.2',
 			'modes'		=> array(
 				'settings'	=> array('title' => 'ACP_MAPBBCODE_SETTINGS', 'auth' => 'acl_a_bbcode', 'cat' => array('ACP_MESSAGES')),
 			),

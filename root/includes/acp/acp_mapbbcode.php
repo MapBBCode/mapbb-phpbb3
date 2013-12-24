@@ -91,13 +91,17 @@ class acp_mapbbcode
 			trigger_error($user->lang['CONFIG_UPDATED'] . adm_back_link($this->u_action));
 		}
 
-		include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
+		if( !function_exists('get_mapbbcode_addons') )
+		{
+			include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
+		}
+
 		$template->assign_vars(array(
 			'U_ACTION'			=> $this->u_action,
 			'MAPS_ENABLE'		=> $maps_enable,
 			'ALLOW_MAPS'		=> $maps_enable,
 			'ENABLE_EXTERNAL'	=> $enable_external,
-			'LAYERS'			=> $layers,
+			'LAYERS'			=> str_replace("'", "\\'", $layers),
 			'DEFAULT_ZOOM'		=> $default_zoom,
 			'DEFAULT_POS'		=> $default_pos,
 			'VIEW_WIDTH'		=> $view_width,

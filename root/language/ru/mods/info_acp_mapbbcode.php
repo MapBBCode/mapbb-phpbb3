@@ -36,7 +36,7 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 
 $lang = array_merge($lang, array(
-	'MAPBB_LANGUAGE_JS' => 'Russian',
+	'MAPBB_LANGUAGE_JS' => 'ru',
 	'BBCODE_MAP_HELP' => 'Вставить карту: [map]широта,долгота(подпись); ...[/map]  (alt+m)',
 	'MAPS_ARE_ON' => '[map] <em>ВКЛЮЧЁН</em>',
 	'MAPS_ARE_OFF' => '[map] <em>ВЫКЛЮЧЕН</em>',
