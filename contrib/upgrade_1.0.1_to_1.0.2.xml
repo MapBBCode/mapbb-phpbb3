@@ -38,7 +38,7 @@
 		<open src="includes/acp/acp_mapbbcode.php">
 			<edit>
 				<find><![CDATA[		include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);]]></find>
-				<action type="replace-with"><![CDATA[		if( !function_exists('get_mapbbcode_addons') )
+				<action type="replace-with"><![CDATA[		if (!function_exists('get_mapbbcode_addons'))
 		{
 			include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
 		}]]></action>
@@ -51,7 +51,7 @@
 		<open src="includes/hooks/hook_mapbbcode.php">
 			<edit>
 				<find><![CDATA[		include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);]]></find>
-				<action type="replace-with"><![CDATA[		if( !function_exists('get_mapbbcode_addons') )
+				<action type="replace-with"><![CDATA[		if (!function_exists('get_mapbbcode_addons'))
 		{
 			include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
 		}]]></action>

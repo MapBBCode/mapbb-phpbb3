@@ -91,7 +91,7 @@ class acp_mapbbcode
 			trigger_error($user->lang['CONFIG_UPDATED'] . adm_back_link($this->u_action));
 		}
 
-		if( !function_exists('get_mapbbcode_addons') )
+		if (!function_exists('get_mapbbcode_addons'))
 		{
 			include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
 		}

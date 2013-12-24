@@ -39,7 +39,7 @@
 		<open src="includes/acp/acp_mapbbcode.php">
 			<edit>
 				<find><![CDATA[		$template->assign_vars(array(]]></find>
-				<action type="before-add"><![CDATA[		if( !function_exists('get_mapbbcode_addons') )
+				<action type="before-add"><![CDATA[		if (!function_exists('get_mapbbcode_addons'))
 		{
 			include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
 		}]]></action>
@@ -62,7 +62,7 @@
 			</edit>
 			<edit>
 				<find><![CDATA[		$user->add_lang('mods/info_acp_mapbbcode');]]></find>
-				<action type="before-add"><![CDATA[		if( !function_exists('get_mapbbcode_addons') )
+				<action type="before-add"><![CDATA[		if (!function_exists('get_mapbbcode_addons'))
 		{
 			include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
 		}]]></action>

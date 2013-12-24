@@ -16,7 +16,7 @@ function add_mapbbcode_variables(&$hook, $handle, $include_once, $tpl = false)
 	global $phpbb_root_path, $phpEx;
 
 	if (defined('MAPBBCODE') && $config['allow_maps']) {
-		if( !function_exists('get_mapbbcode_addons') )
+		if (!function_exists('get_mapbbcode_addons'))
 		{
 			include($phpbb_root_path . 'includes/functions_mapbbcode.' . $phpEx);
 		}
